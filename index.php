@@ -1,3 +1,15 @@
+<?php 
+    // Register new user
+    if (isset($_POST['regUser']) && isset($_POST['regPwd']) && isset($_POST['regConfirmPwd'])) {
+        if ($_POST['regPwd'] == $_POST['regConfirmPwd']) {
+            $user->newUser($_POST['regUser'], $_POST['regPwd']);
+        }
+        else {
+            $user->error = "<strong>Error:</strong> The passwords don't match";
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +52,7 @@
     <script src="js/custom_radio.js"></script>
     <script src="js/jquery.tagsinput.js"></script>
     <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/dropdown.js"></script>
     <script src="js/jquery.placeholder.js"></script>
     <script src="js/ajaxGet.js"></script>
     <div id="content">
@@ -59,16 +72,20 @@
                     <span class="icon-bar"></span>
                 </a>
                 <a class="brand" href="#">Project name</a>
-                <div class="nav-collapse">
+                <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li class="active"><a href="#" onclick="ajaxGet('pages/home.php', 'content')">Home</a></li>
+                        <li><a href="#" onclick="ajaxGet('pages/home.php', 'content')">Home</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/about.php', 'content')">About</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/contact.php', 'content')">Contact</a></li>
                     </ul>
-                    <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+                    
+                    <ul class="nav pull-right">
+                        <?php include("pages/signup.php"); ?>
+                    </ul>
                 </div><!--/.nav-collapse -->
             </div>
         </div>
+
     </div>
 
 </body>
