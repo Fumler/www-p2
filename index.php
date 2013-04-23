@@ -43,7 +43,7 @@
     <script src="js/jquery.placeholder.js"></script>
     <script src="js/ajaxGet.js"></script>
     <div id="content">
-        <script> 
+        <script>
         $(document).ready (function () {
             //var div = document.getElementById('content');
             ajaxGet("pages/home.php", "content");
@@ -65,7 +65,7 @@
                         <li><a href="#" onclick="ajaxGet('pages/about.php', 'content')">About</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/contact.php', 'content')">Contact</a></li>
                     </ul>
-                    <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
+                    <p class="navbar-text pull-right"><?php include("functions/login.php");?></p>
                 </div><!--/.nav-collapse -->
             </div>
         </div>
