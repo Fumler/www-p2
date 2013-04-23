@@ -1,5 +1,5 @@
 <li class="dropdown">
-    <a class="dropdown-toggle" href="#" data-toggle="dropdown"><i class="icon-user"></i> Sign Up <strong class="caret"></strong></a>
+    <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign Up <strong class="caret"></strong></a>
     <div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
         <form name="registration" action="index.php" method="post" accept-charset="UTF-8">
             <legend>Please sign up</legend>

@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php 
     include("pages/connect.php");
     require_once('classes/user1.class.php');
 
@@ -11,10 +10,6 @@ session_start();
         else {
             $user->error = "<strong>Error:</strong> The passwords don't match";
         }
-    }
-
-    if  (!empty($_GET['logout'])) {
-        session_destroy();
     }
 ?>
 
@@ -88,17 +83,14 @@ session_start();
                         <li><a href="#" onclick="ajaxGet('pages/contact.php', 'content')">Contact</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/folderListing.php', 'content')">Folder Listing</a></li>
                     </ul>
-
+                    
                     <ul class="nav pull-right">
-                        <?php
-                        if ($user->loggedOn()) {
-                            echo '<a href="index.php?logout=1">Log out</a>';
-                        } else {
-                        ?>
-
-                        <?php include("functions/signup.php"); ?>
-                        <?php include("functions/login.php"); }?>
+                        <?php include("pages/signup.php"); ?>
                     </ul>
+<<<<<<< HEAD
+                    <p class="navbar-text pull-right"><?php include("functions/login.php");?></p>
+=======
+>>>>>>> 1026ebc05ef40ac10607b5bcf015e6f3fac2cf3d
                 </div><!--/.nav-collapse -->
             </div>
         </div>
