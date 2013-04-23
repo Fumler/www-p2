@@ -83,7 +83,11 @@
                     </ul>
                     
                     <ul class="nav pull-right">
-                        <?php include("pages/signup.php"); ?>
+                        <?php if ($user->loggedOn()) {
+                        }
+                        else {
+                            include("pages/signup.php");
+                        } ?>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
