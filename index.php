@@ -1,4 +1,7 @@
 <?php 
+    include("pages/connect.php");
+    require_once('classes/user1.class.php');
+
     // Register new user
     if (isset($_POST['regUser']) && isset($_POST['regPwd']) && isset($_POST['regConfirmPwd'])) {
         if ($_POST['regPwd'] == $_POST['regConfirmPwd']) {
