@@ -1,25 +1,26 @@
+<?php $page = "contact";?>
 <h1>Contact Us</h1>
 
 <?php
-	// if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['details']))
-	// {
-	//     $name=$_POST['name'];
-	//     $email=$_POST['email'];
-	//     $details=$_POST['details'];
-	//     $to='fmaster@basketak.net';
-	//     $subject='Customer Enquiry';
+	if(isset($_POST['name']) && isset($_POST['email']) && isset($_POST['details']))
+	{
+	    $name=$_POST['name'];
+	    $email=$_POST['email'];
+	    $details=$_POST['details'];
+	    $to='fmaster@basketak.net';
+	    $subject='Customer Enquiry';
 
-	//     $msg="Customer Enquiry:"." Name: $name".
-	//     " Email: $email"." Message: $details";
-	//     mail($to,$subject,$msg,'From:'.$email);
+	    $msg="Customer Enquiry:"." Name: $name".
+	    " Email: $email"." Message: $details";
+	    mail($to,$subject,$msg,'From:'.$email);
 
 		?>
-<!-- 			<div class="alert alert-success">
+			<div class="alert alert-success">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<?php //echo "<p><strong>Your e-mail have been sent</strong></p>" ?>
-			</div>  -->
+				<?php echo "<p><strong>Your e-mail have been sent</strong></p>" ?>
+			</div> 
 		<?php
-	// }
+	}
 ?>
 
 <form action="index.php?id=contact" method="post">
