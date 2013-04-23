@@ -64,6 +64,7 @@
             //var div = document.getElementById('content');
             ajaxGet("pages/home.php", "content");
         });
+
         </script>
     </div>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -74,12 +75,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="#">Project name</a>
+                <a class="brand" href="#">Fronter 2.0</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
                         <li><a href="#" onclick="ajaxGet('pages/home.php', 'content')">Home</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/about.php', 'content')">About</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/contact.php', 'content')">Contact</a></li>
+                        <li><a href="#" onclick="ajaxGet('pages/folderListing.php', 'content')">Folder Listing</a></li>
                     </ul>
                     
                     <ul class="nav pull-right">
