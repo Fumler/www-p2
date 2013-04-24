@@ -14,7 +14,7 @@
 	$(document).ready (function () 
 	{
 		$.ajax({
-			url: 'pages/fetchFolders.php',
+			url: 'functions/fetchFolders.php',
 			data: {'id': -1},
 			type: 'post',
 			success: function( data )
@@ -50,7 +50,7 @@
 	        $('#folder_1_' + id).append('<ul class="folders"></ul>');
 
 	        $.ajax ({
-	            url: 'pages/fetchFolders.php',
+	            url: 'functions/fetchFolders.php',
 	            data: {'id': id},
 	            type: 'post',
 	            success: function (data) 

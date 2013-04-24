@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include("pages/connect.php");
+    include("functions/connect.php");
     require_once('classes/user1.class.php');
 
     // Register new user
