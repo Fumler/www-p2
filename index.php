@@ -16,6 +16,9 @@ session_start();
     if  (!empty($_GET['logout'])) {
         session_destroy();
     }
+
+
+    $currentPage = -1;
 ?>
 
 <!DOCTYPE html>
@@ -94,7 +97,8 @@ session_start();
                         <li><a href="#" onclick="ajaxGet('pages/home.php', 'content')">Home</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/about.php', 'content')">About</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/contact.php', 'content')">Contact</a></li>
-                        <li><a href="#" onclick="ajaxGet('pages/pageListing.php', 'content')">Page Listing</a></li>
+                        <li><a href="#" onclick="ajaxGet('pages/pageListing.php', 'content')">My Pages</a></li>
+                        <li><a href="#" onclick="ajaxGet('pages/pageCreator.php', 'content')">Create new page</a></li>
                     </ul>
 
                     <ul class="nav pull-right">
