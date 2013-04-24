@@ -98,6 +98,7 @@ class User {
 			$sth->execute ();
 			$row = $sth->fetch();
 			$this->uname = $row['uname'];
+			echo("login");
 		}
 	}
 
@@ -363,6 +364,7 @@ class User {
 
 }
 
+include("../functions/connect.php");
 $user = new User ($db);											// Create a new object of the User class
 if (isset ($needLogin) && !$user->loggedOn())					// check login statuss
 	die ('You need to be logged on to do this!');

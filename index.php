@@ -66,18 +66,7 @@ session_start();
     <script src="js/ajaxGet.js"></script>
     <script type="text/javascript">
     function fixModal(classId) {
-        if(classId == "register_modal") {
-             $(".login_modal .modal").appendTo($("body"))
-        } else {
-             $(".register_modal .modal").appendTo($("body"))
-        }
-        //removeClass(classId);
-         }
-    </script>
-    <script type="text/javascript">
-    function removeClass(classId) {
-        elem = document.getElementById(classId);
-        elem.parentNode.removeChild(elem);
+             $("."+classId +" .modal").appendTo($("body"))
          }
     </script>
     <div class="navbar navbar-inverse navbar-fixed-top">
