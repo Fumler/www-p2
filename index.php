@@ -1,6 +1,6 @@
 <?php
 session_start();
-    include("pages/connect.php");
+    include("functions/connect.php");
     require_once('classes/user1.class.php');
 
     // Register new user
@@ -77,7 +77,7 @@ session_start();
                         <li><a href="#" onclick="ajaxGet('pages/home.php', 'content')">Home</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/about.php', 'content')">About</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/contact.php', 'content')">Contact</a></li>
-                        <li><a href="#" onclick="ajaxGet('pages/folderListing.php', 'content')">Folder Listing</a></li>
+                        <li><a href="#" onclick="ajaxGet('pages/pageListing.php', 'content')">Page Listing</a></li>
                     </ul>
 
                     <ul class="nav pull-right">

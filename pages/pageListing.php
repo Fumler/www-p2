@@ -1,7 +1,6 @@
-<h1>Folder Listing</h1>
+<h1>Page Listing</h1>
 
-<div id="folders">
-	<p> HEI </p>
+<div id="pages">
 </div>
 
 <?php
@@ -10,32 +9,29 @@
 ?>
 
 <script>
-	
 
 	$(document).ready (function () 
 	{
-		console.log("Hei");
-
 		$.ajax({
-			url: 'pages/fetchFolders.php',
+			url: 'functions/fetchPages.php',
 			data: {'id': -1},
 			type: 'post',
 			success: function( data )
 			{
-				$('#folders').html('<ul class="folders"></ul>');
+				$('#pages').html('<ul class="pages"></ul>');
 
 		        for(var i = 0; i < data.length; i++)
 		        {
-		            $('#folders .folders').append
+		            $('#pages .pages').append
 		            (
 
-		            	'<li id="folder_' + data[i].uid + '_' + data[i].id + '">' + 
-		                '<span class="foldericon">&nbsp;</span>' + 
+		            	'<li id="page_' + data[i].uid + '_' + data[i].id + '">' + 
+		                '<span class="pageicon">&nbsp;</span>' + 
 		                '<a href="javascript:openClose(' + data[i].id + ');">' + 
 		                data[i].name + '</a></li>'
 		            );
 
-		            $('#folders .folders').last().loaded = false;
+		            $('#pages .pages').last().loaded = false;
 		        }
 			}
 		});
@@ -43,32 +39,32 @@
 
 	function openClose( id ) 
 	{
-	    if( $('#folder_1_' + id)[0].loaded )
+	    if( $('#page_1_' + id)[0].loaded )
 	    {
-	        $('#folder_1_' + id + ' ul').toggle();
+	        $('#page_1_' + id + ' ul').toggle();
 	    }
 	    else
 	    {
-	        $('#folder_1_' + id)[0].loaded = true;
-	        $('#folder_1_' + id).append('<ul class="folders"></ul>');
+	        $('#page_1_' + id)[0].loaded = true;
+	        $('#page_1_' + id).append('<ul class="pages"></ul>');
 
 	        $.ajax ({
-	            url: 'pages/fetchFolders.php',
+	            url: 'functions/fetchPages.php',
 	            data: {'id': id},
 	            type: 'post',
 	            success: function (data) 
 	            {
 	                for (var i = 0; i < data.length; i++) 
 	                {
-	                    $('#folder_1_' + id + ' ul').append
+	                    $('#page_1_' + id + ' ul').append
 	                    (
-		                    '<li id="folder_' + data[i].uid + '_' + data[i].id + '">' + 
-		                    '<span class="foldericon">&nbsp;</span>' + 
+		                    '<li id="page_' + data[i].uid + '_' + data[i].id + '">' + 
+		                    '<span class="pageicon">&nbsp;</span>' + 
 		                    '<a href="javascript:openClose(' + data[i].id + ');">' +
 		                    data[i].name + '</a></li>'
 	                    );
 
-	                    $('#folder_1_' + id + ' ul li').last().loaded = false;
+	                    $('#page_1_' + id + ' ul li').last().loaded = false;
 	                }
 	            }
 	        }); // ajax end
