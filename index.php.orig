@@ -90,6 +90,13 @@ session_start();
                     </ul>
 
                     <ul class="nav pull-right">
+<<<<<<< HEAD
+                        <?php if ($user->loggedOn()) {
+                        }
+                        else {
+                            include("pages/signup.php");
+                        } ?>
+=======
                         <?php
                         if ($user->loggedOn()) {
                             echo '<a href="index.php?logout=1">Log out</a>';
@@ -98,6 +105,7 @@ session_start();
 
                         <?php include("functions/signup.php"); ?>
                         <?php include("functions/login.php"); }?>
+>>>>>>> 50260c1634f87d5a358d8faf60f0335e3adb357c
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
