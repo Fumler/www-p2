@@ -63,15 +63,6 @@ session_start();
     <script src="js/dropdown.js"></script>
     <script src="js/jquery.placeholder.js"></script>
     <script src="js/ajaxGet.js"></script>
-    <div id="content">
-        <script>
-        $(document).ready (function () {
-            //var div = document.getElementById('content');
-            ajaxGet("pages/home.php", "content");
-        });
-
-        </script>
-    </div>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container-fluid">
@@ -103,6 +94,16 @@ session_start();
             </div>
         </div>
 
+    </div>
+
+    <div id="content">
+        <script>
+        $(document).ready (function () {
+            //var div = document.getElementById('content');
+            ajaxGet("pages/home.php", "content");
+        });
+
+        </script>
     </div>
 
 </body>
