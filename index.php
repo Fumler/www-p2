@@ -96,7 +96,7 @@ session_start();
 
     </div>
 
-    <div id="content">
+    <div id="content" class="span9" >
         <script>
         $(document).ready (function () {
             //var div = document.getElementById('content');
