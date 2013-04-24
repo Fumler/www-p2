@@ -17,8 +17,11 @@ session_start();
         session_destroy();
     }
 
+    $uid = $user->getID();
+    $profilePage = "pages/profile.php?uid=" . $uid;
+    
+     $currentPage = -1;
 
-    $currentPage = -1;
 ?>
 
 <!DOCTYPE html>
@@ -104,7 +107,8 @@ session_start();
                     <ul class="nav pull-right">
                         <?php
                         if ($user->loggedOn()) {
-                            echo '<a href="index.php?logout=1">Log out</a>';
+                            echo '<li><a href="#" onclick="ajaxGet(\'' . $profilePage . '\', \'content\')">Profile</a></li>';
+                            echo '<li><a href="index.php?logout=1">Log out</a></li>';
                         } else {
                         ?>
 

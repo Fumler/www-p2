@@ -7,7 +7,15 @@
 </form>
 
 <script src="js/pages.js"></script>
-<script type="text/javascript">
+<script type="text/javascript" language="javascript">
+
+<!-- <?php 
+	global $currentPage;
+	echo "var currentPage = " . $currentPage;
+
+	?>
+	//-->
+
 
 $(document).ready(function() 
 {
@@ -19,7 +27,8 @@ $(document).ready(function()
 		var name = $('#name').val();
 
 		console.log(name);
-		Pages.createNewFolder(name, currentPage);
+		console.log(currentPage);
+		Pages.createNewPage(name, currentPage);
 	});
 });
 

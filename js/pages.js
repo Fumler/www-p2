@@ -45,7 +45,8 @@ Pages.prototype.init = function ()
 
 Pages.prototype.createNewPage = function (name, parentID)
 {
-
+	console.log(name);
+	console.log(parentID);
 }
 
 
