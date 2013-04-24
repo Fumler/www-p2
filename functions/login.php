@@ -63,6 +63,46 @@
 </div>
 
 
+<script type="text/javascript">
+    $(document).ready(function() {
+      $('#register_form').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+           type: "POST",
+           url: 'functions/register.php',
+           data: $(this).serialize(),
+           success: function(data)
+           {
+            console.log($("#regUser").val());
+                if (data === ' success') {
+                    $.ajax({
+                        type: "POST",
+                        url: 'classes/user1.class.php',
+                        data: {
+                            pwd:$("#regPwd").val(),
+                            uname:$("#regUser").val()
+                        },
+                        success: function(data)
+                        {
+                            if (data === ' login') {
+                                $('#myModal2').modal('hide');
+                                ajaxGet('functions/loggedIn.php', 'login');
+                            }
+                            else {
+                            alert('Invalid Credentials');
+                            }
+                        }
+                    });
+                }
+                else {
+                    alert('Invalid Credentials');
+                }
+           }
+       });
+     });
+    });
+</script>
+
 <a data-toggle="modal" href="#myModal2" onclick="fixModal('register_modal')">Register</a>
 <div class="register_modal" id="register_modal">
     <div class="modal hide fade in" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true" id="myModal2">
@@ -71,10 +111,10 @@
             <h3 id="myModalLabel2">Register</h3>
         </div>
         <div class="modal-body">
-            <form method="post" action='' name="register_form">
+            <form method="post" action='' id="register_form">
                 <p><input type="text" class="span3" name="regUser" id="regUser" placeholder="Username" autofocus></p>
-                <p><input type="password" class="span3" name="regPwd" placeholder="Password"></p>
-                <p><input type="password" class="span3" name="regConfirmPwd" placeholder="Confirm password"></p>
+                <p><input type="password" class="span3" name="regPwd" id="regPwd" placeholder="Password"></p>
+                <p><input type="password" class="span3" name="regConfirmPwd" id="regConfirmPwd" placeholder="Confirm password"></p>
                 <p><button type="submit" class="btn btn-primary">Sign up</button>
                 </p>
                 <p><a href="#">Forgot Password?</a></p>

@@ -117,6 +117,8 @@ class User {
 	 */
 	function newUser ($uname, $pwd) {
 		try {
+		global $db;
+		$this->db = $db;
 		$this->db->beginTransaction();							// Run in a transaction so that we can do a rollback
 		$this->db->query ('LOCK TABLES users WRITE');			// Prevent others from creating a new user at the same time
 		$sql = 'INSERT INTO users (uname) VALUES (:uname)';
@@ -143,7 +145,8 @@ class User {
 		$sth = $this->db->prepare ($sql);
 		$sth->bindParam (':uid', $uid);
 		$pwd = $uid.$pwd.SALT;									// Create the password and create the hash value
-		$sth->bindParam (':pwd', hash_hmac('sha512', $pwd, SITEKEY));
+		$saltedPw = hash_hmac('sha512', $pwd, SITEKEY);
+		$sth->bindParam (':pwd', $saltedPw);
 		$sth->execute();										// Run the query
 		if ($sth->rowCount()==0) {								// No password set
 			$this->db->rollBack();								// Remove the user
@@ -151,7 +154,8 @@ class User {
 			throw new Exception('<strong>Oh snap!</strong> Something went wrong. Try again.');	// Throw an exception
 		}
 		$this->db->commit();
-		$this->success = "<strong>Congrats!</strong> You are now registered as " . $uname . ". Please log in.";
+		echo("success");
+		//$this->success = "<strong>Congrats!</strong> You are now registered as " . $uname . ". Please log in.";
 	} catch(Exception $e) {
 				$this->error = $e->getMessage();
 			}

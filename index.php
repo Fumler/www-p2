@@ -3,15 +3,15 @@ session_start();
     include("functions/connect.php");
     require_once('classes/user1.class.php');
 
-    // Register new user
-    if (isset($_POST['regUser']) && isset($_POST['regPwd']) && isset($_POST['regConfirmPwd'])) {
-        if ($_POST['regPwd'] == $_POST['regConfirmPwd']) {
-            $user->newUser($_POST['regUser'], $_POST['regPwd']);
-        }
-        else {
-            $user->error = "<strong>Error:</strong> The passwords don't match";
-        }
-    }
+    // // Register new user
+    // if (isset($_POST['regUser']) && isset($_POST['regPwd']) && isset($_POST['regConfirmPwd'])) {
+    //     if ($_POST['regPwd'] == $_POST['regConfirmPwd']) {
+    //         $user->newUser($_POST['regUser'], $_POST['regPwd']);
+    //     }
+    //     else {
+    //         $user->error = "<strong>Error:</strong> The passwords don't match";
+    //     }
+    // }
 
     $uid = $user->getID();
     $profilePage = "pages/profile.php?uid=" . $uid;
