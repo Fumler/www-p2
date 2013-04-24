@@ -13,10 +13,6 @@ session_start();
         }
     }
 
-    if  (!empty($_GET['logout'])) {
-        session_destroy();
-    }
-
     $uid = $user->getID();
     $profilePage = "pages/profile.php?uid=" . $uid;
 ?>
@@ -68,9 +64,25 @@ session_start();
     <script src="js/jquery.placeholder.js"></script>
     <script src="js/ajaxGet.js"></script>
     <script type="text/javascript">
-    function fixModal(classId) {
-             $("."+classId +" .modal").appendTo($("body"))
-         }
+        function fixModal(classId) {
+            $("."+classId +" .modal").appendTo($("body"))
+        }
+
+        function logout(){
+            $.ajax({
+            type: "GET",
+            url: 'functions/logout.php',
+            async: true,
+            success: function (response) {
+                // console.log(response);
+                //return response;
+                if(response == "logged out")
+                {
+                    ajaxGet('functions/login.php', 'login');
+                }
+            }
+            });
+        }
     </script>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
@@ -90,15 +102,14 @@ session_start();
                     </ul>
 
                     <ul class="nav pull-right">
-                        <?php
-                        if ($user->loggedOn()) {
-                            echo '<li><a href="#" onclick="ajaxGet(\'' . $profilePage . '\', \'content\')">Profile</a></li>';
-                            echo '<li><a href="index.php?logout=1">Log out</a></li>';
-                        } else {
-                        ?>
-
-                        <?php include("functions/signup.php"); ?>
-                        <?php include("functions/login.php"); }?>
+                        <div id="login">
+                            <?php
+                            if ($user->loggedOn()) {
+                                include("functions/loggedIn.php");
+                            } else {
+                                include("functions/login.php"); 
+                            }?>  
+                        </div>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
