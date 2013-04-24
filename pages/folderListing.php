@@ -1,7 +1,6 @@
 <h1>Folder Listing</h1>
 
 <div id="folders">
-	<p> HEI </p>
 </div>
 
 <?php
@@ -14,8 +13,6 @@
 
 	$(document).ready (function () 
 	{
-		console.log("Hei");
-
 		$.ajax({
 			url: 'pages/fetchFolders.php',
 			data: {'id': -1},
