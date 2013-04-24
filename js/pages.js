@@ -3,7 +3,7 @@
 // pages class
 function Pages () 
 {
-	this.current = -1; // Currently selected page, root by default. 
+	this.currentPage = -1; // Currently selected page, root by default. 
 	this.pageSelected = null;
 
 }
@@ -43,10 +43,24 @@ Pages.prototype.init = function ()
 	});
 }
 
+Pages.prototype.createNewPage = function (name, parentID)
+{
+	console.log(name);
+	console.log(parentID);
+}
+
+
+Pages.prototype.openPage = function (id)
+{
+
+}
+
 
 Pages.prototype.openClose = function (id) 
 {
 	this.pageSelected (id);
+	this.current = id;
+	console.log(this.current);
 
 	if( $('#page_1_' + id)[0].loaded )
 	    {
