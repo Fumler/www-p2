@@ -1,6 +1,9 @@
 <?php
 session_start();
-    include("functions/connect.php");
+
+    $indexDb = new PDO('mysql:host=localhost;dbname=pages;charset=UTF8', $_SERVER['DBUSER'], $_SERVER['DBPASS']);
+    $db = $indexDb;
+
     require_once('classes/user1.class.php');
 
     // // Register new user
@@ -15,7 +18,7 @@ session_start();
 
     $uid = $user->getID();
     $profilePage = "pages/profile.php?uid=" . $uid;
-    
+
      $currentPage = -1;
 
 ?>
@@ -66,6 +69,7 @@ session_start();
     <script src="js/dropdown.js"></script>
     <script src="js/jquery.placeholder.js"></script>
     <script src="js/ajaxGet.js"></script>
+    <script src="js/jquery.address-1.5.min.js"></script>
     <script type="text/javascript">
         function fixModal(classId) {
             $("."+classId +" .modal").appendTo($("body"))
@@ -87,6 +91,27 @@ session_start();
             });
         }
     </script>
+    <script type="text/javascript">
+    $("document").ready(function(){
+
+        function loadURL(url) {
+            console.log("loadURL: " + url);
+            $("#content").load(url);
+        }
+
+        $.address.init(function(event) {
+            console.log("init: " + $('[rel=address:' + event.value + ']').attr('href'));
+        }).change(function(event) {
+            $("#content").load($('[rel=address:' + event.value + ']').attr('href'));
+            console.log("change");
+        })
+
+        $('a').click(function(){
+            loadURL($(this).attr('href'));
+        });
+
+        });
+    </script>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
@@ -98,8 +123,8 @@ session_start();
                 <a class="brand" href="#">Fronter 2.0</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li><a href="#" onclick="ajaxGet('pages/home.php', 'content')">Home</a></li>
-                        <li><a href="#" onclick="ajaxGet('pages/about.php', 'content')">About</a></li>
+                        <li><a href="" onclick="ajaxGet('pages/home.php', 'content')">Home</a></li>
+                        <li><a href="pages/about.php" rel="address:/about">About</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/contact.php', 'content')">Contact</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/pageListing.php', 'content')">My Pages</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/pageCreator.php', 'content')">Create new page</a></li>
@@ -111,8 +136,8 @@ session_start();
                             if ($user->loggedOn()) {
                                 include("functions/loggedIn.php");
                             } else {
-                                include("functions/login.php"); 
-                            }?>  
+                                include("functions/login.php");
+                            }?>
                         </div>
                     </ul>
                 </div><!--/.nav-collapse -->
@@ -120,7 +145,7 @@ session_start();
         </div>
 
     </div>
-
+    <?php echo $_SERVER["DOCUMENT_ROOT"].'/www-p2/functions/connect.php';?>
     <div id="content" class="span9" >
         <script>
         $(document).ready (function () {
