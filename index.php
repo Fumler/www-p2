@@ -3,22 +3,21 @@ session_start();
     include("functions/connect.php");
     require_once('classes/user1.class.php');
 
-    // Register new user
-    if (isset($_POST['regUser']) && isset($_POST['regPwd']) && isset($_POST['regConfirmPwd'])) {
-        if ($_POST['regPwd'] == $_POST['regConfirmPwd']) {
-            $user->newUser($_POST['regUser'], $_POST['regPwd']);
-        }
-        else {
-            $user->error = "<strong>Error:</strong> The passwords don't match";
-        }
-    }
-
-    if  (!empty($_GET['logout'])) {
-        session_destroy();
-    }
+    // // Register new user
+    // if (isset($_POST['regUser']) && isset($_POST['regPwd']) && isset($_POST['regConfirmPwd'])) {
+    //     if ($_POST['regPwd'] == $_POST['regConfirmPwd']) {
+    //         $user->newUser($_POST['regUser'], $_POST['regPwd']);
+    //     }
+    //     else {
+    //         $user->error = "<strong>Error:</strong> The passwords don't match";
+    //     }
+    // }
 
     $uid = $user->getID();
     $profilePage = "pages/profile.php?uid=" . $uid;
+    
+     $currentPage = -1;
+
 ?>
 
 <!DOCTYPE html>
@@ -68,20 +67,25 @@ session_start();
     <script src="js/jquery.placeholder.js"></script>
     <script src="js/ajaxGet.js"></script>
     <script type="text/javascript">
-    function fixModal(classId) {
-        if(classId == "register_modal") {
-             $(".login_modal .modal").appendTo($("body"))
-        } else {
-             $(".register_modal .modal").appendTo($("body"))
+        function fixModal(classId) {
+            $("."+classId +" .modal").appendTo($("body"))
         }
-        //removeClass(classId);
-         }
-    </script>
-    <script type="text/javascript">
-    function removeClass(classId) {
-        elem = document.getElementById(classId);
-        elem.parentNode.removeChild(elem);
-         }
+
+        function logout(){
+            $.ajax({
+            type: "GET",
+            url: 'functions/logout.php',
+            async: true,
+            success: function (response) {
+                // console.log(response);
+                //return response;
+                if(response == "logged out")
+                {
+                    ajaxGet('functions/login.php', 'login');
+                }
+            }
+            });
+        }
     </script>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
@@ -97,19 +101,19 @@ session_start();
                         <li><a href="#" onclick="ajaxGet('pages/home.php', 'content')">Home</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/about.php', 'content')">About</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/contact.php', 'content')">Contact</a></li>
-                        <li><a href="#" onclick="ajaxGet('pages/pageListing.php', 'content')">Page Listing</a></li>
+                        <li><a href="#" onclick="ajaxGet('pages/pageListing.php', 'content')">My Pages</a></li>
+                        <li><a href="#" onclick="ajaxGet('pages/pageCreator.php', 'content')">Create new page</a></li>
                     </ul>
 
                     <ul class="nav pull-right">
-                        <?php
-                        if ($user->loggedOn()) {
-                            echo '<li><a href="#" onclick="ajaxGet(\'' . $profilePage . '\', \'content\')">Profile</a></li>';
-                            echo '<li><a href="index.php?logout=1">Log out</a></li>';
-                        } else {
-                        ?>
-
-                        <?php include("functions/signup.php"); ?>
-                        <?php include("functions/login.php"); }?>
+                        <div id="login">
+                            <?php
+                            if ($user->loggedOn()) {
+                                include("functions/loggedIn.php");
+                            } else {
+                                include("functions/login.php"); 
+                            }?>  
+                        </div>
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>

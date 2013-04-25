@@ -1,4 +1,7 @@
 <?php
+
+
+//require_once('functions/connect.php');
 define ('SALT', 'SADFOJKadja§!aojd£$]€}[{');
 define ('SITEKEY', 'NativeAmericanwarriorTontorecOuntstheuntoldtalesthattrAnsformedJohnReidamanoftheLawintoalegeNdofjustice');
 
@@ -22,11 +25,13 @@ class User {
 	 *
 	 * @param PDO database handler $db
 	 */
-	function User ($db) {
+	function User () {
 		global $_POST, $_SESSION;
-		$this->db = $db;										// Store a reference to the database handler
+		// $this->db = $db;										// Store a reference to the database handler
 		if (isset ($_POST['uname'])) 
 		{														// Try to log in
+			require_once('../functions/connect.php');
+			$this->db = $db;
 			$this->uname = $_POST['uname'];
 			$sql = 'SELECT * FROM users WHERE uname=:uname';
 			$sth = $db->prepare ($sql);
@@ -60,17 +65,18 @@ class User {
 				$sth->bindParam (':pwd', $hash);
 				$sth->execute ();
 
-				$_POST['remember'] = (int)$_POST['remember'];
+				
 
 				if ($row = $sth->fetch())  // Password found, set _SESSION value
 				{
 					$hour = time() + (60 * 60); // 2 weeks
 					$this->uid = $row['uid'];
 					$_SESSION['uid'] = $this->uid;
-					$_SESSION['remember'] = $_POST['remember'];
 
 					if(isset($_POST['remember']))
 					{
+						$_POST['remember'] = (int)$_POST['remember'];
+						$_SESSION['remember'] = $_POST['remember'];
 						setcookie('uname', $_POST['uname'], $hour);
 						setcookie('pwd', $hash, $hour);
 						setcookie('blogRemember', $_POST['uname'], $hour * 24 * 7 * 52); // year.. 
@@ -83,7 +89,7 @@ class User {
 							setcookie(blogRemember, gone, $past);
 						}
 					}
-					
+					echo("login");
 					return;
 				}
 			}
@@ -111,6 +117,8 @@ class User {
 	 */
 	function newUser ($uname, $pwd) {
 		try {
+		global $db;
+		$this->db = $db;
 		$this->db->beginTransaction();							// Run in a transaction so that we can do a rollback
 		$this->db->query ('LOCK TABLES users WRITE');			// Prevent others from creating a new user at the same time
 		$sql = 'INSERT INTO users (uname) VALUES (:uname)';
@@ -137,7 +145,8 @@ class User {
 		$sth = $this->db->prepare ($sql);
 		$sth->bindParam (':uid', $uid);
 		$pwd = $uid.$pwd.SALT;									// Create the password and create the hash value
-		$sth->bindParam (':pwd', hash_hmac('sha512', $pwd, SITEKEY));
+		$saltedPw = hash_hmac('sha512', $pwd, SITEKEY);
+		$sth->bindParam (':pwd', $saltedPw);
 		$sth->execute();										// Run the query
 		if ($sth->rowCount()==0) {								// No password set
 			$this->db->rollBack();								// Remove the user
@@ -145,7 +154,8 @@ class User {
 			throw new Exception('<strong>Oh snap!</strong> Something went wrong. Try again.');	// Throw an exception
 		}
 		$this->db->commit();
-		$this->success = "<strong>Congrats!</strong> You are now registered as " . $uname . ". Please log in.";
+		echo("success");
+		//$this->success = "<strong>Congrats!</strong> You are now registered as " . $uname . ". Please log in.";
 	} catch(Exception $e) {
 				$this->error = $e->getMessage();
 			}
@@ -363,7 +373,7 @@ class User {
 
 }
 
-$user = new User ($db);											// Create a new object of the User class
+$user = new User ();											// Create a new object of the User class
 if (isset ($needLogin) && !$user->loggedOn())					// check login statuss
 	die ('You need to be logged on to do this!');
 

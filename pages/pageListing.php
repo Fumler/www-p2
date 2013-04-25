@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<title>Page Listing</title>
+</head>
 <h1>Page Listing</h1>
 
 <div id="pages">
@@ -23,11 +24,10 @@
 
 	function pageSelected (id) 
 	{
-		alert ("Currently selected page : "+id);
+		console.log("Page selected: " + id);
 	}
 
 </script>
-</head>
 </html>
 
 <!-- 	// $(document).ready (function () 
