@@ -1,10 +1,7 @@
 <?php
 session_start();
 
-    $indexDb = new PDO('mysql:host=localhost;dbname=pages;charset=UTF8', $_SERVER['DBUSER'], $_SERVER['DBPASS']);
-    $db = $indexDb;
-
-    require_once('classes/user1.class.php');
+    require_once('functions/connect.php');
 
     // // Register new user
     // if (isset($_POST['regUser']) && isset($_POST['regPwd']) && isset($_POST['regConfirmPwd'])) {
