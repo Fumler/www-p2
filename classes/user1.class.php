@@ -1,7 +1,5 @@
 <?php
 
-
-//require_once('functions/connect.php');
 define ('SALT', 'SADFOJKadja§!aojd£$]€}[{');
 define ('SITEKEY', 'NativeAmericanwarriorTontorecOuntstheuntoldtalesthattrAnsformedJohnReidamanoftheLawintoalegeNdofjustice');
 
@@ -25,12 +23,12 @@ class User {
 	 *
 	 * @param PDO database handler $db
 	 */
-	function User () {
+	function User ($db) {
 		global $_POST, $_SESSION;
 		// $this->db = $db;										// Store a reference to the database handler
-		if (isset ($_POST['uname'])) 
+		if (isset ($_POST['uname']))
 		{														// Try to log in
-			require_once('../functions/connect.php');
+
 			$this->db = $db;
 			$this->uname = $_POST['uname'];
 			$sql = 'SELECT * FROM users WHERE uname=:uname';
@@ -39,7 +37,7 @@ class User {
 			$sth->execute ();
 
 			if ($row = $sth->fetch()) // User name found, we can check the password
-			{							
+			{
 				$uid = $row['uid'];
 				$sth->closeCursor();
 				$sql = 'SELECT * FROM users WHERE uid=:uid AND pwd=:pwd';
@@ -50,7 +48,7 @@ class User {
 				// print_r(hash_algos());
 				// Output the hash value, usefull for debuging
 				// echo hash_hmac('sha512', $pwd, SITEKEY);
-				
+
 				$hash = hash_hmac('sha512', $pwd, SITEKEY);
 				//echo $hash;
 
@@ -65,7 +63,7 @@ class User {
 				$sth->bindParam (':pwd', $hash);
 				$sth->execute ();
 
-				
+
 
 				if ($row = $sth->fetch())  // Password found, set _SESSION value
 				{
@@ -79,7 +77,7 @@ class User {
 						$_SESSION['remember'] = $_POST['remember'];
 						setcookie('uname', $_POST['uname'], $hour);
 						setcookie('pwd', $hash, $hour);
-						setcookie('blogRemember', $_POST['uname'], $hour * 24 * 7 * 52); // year.. 
+						setcookie('blogRemember', $_POST['uname'], $hour * 24 * 7 * 52); // year..
 					}
 					else
 					{
@@ -373,7 +371,7 @@ class User {
 
 }
 
-$user = new User ();											// Create a new object of the User class
+$user = new User ($db);											// Create a new object of the User class
 if (isset ($needLogin) && !$user->loggedOn())					// check login statuss
 	die ('You need to be logged on to do this!');
 

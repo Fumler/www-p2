@@ -1,24 +1,18 @@
 <script type="text/javascript">
-    $(document).ready(function() {
-      $('#login_form').submit(function(e) {
-        e.preventDefault();
-        $.ajax({
-           type: "POST",
-           url: 'classes/user1.class.php',
-           data: $(this).serialize(),
-           success: function(data)
-           {
-              if (data === ' login') {
-                $('#myModal1').modal('hide');
-                ajaxGet('functions/loggedIn.php', 'login');
-              }
-              else {
-                alert('Invalid Credentials');
-              }
-           }
-       });
-     });
+$("#login_form").submit(function(e) {
+  e.preventDefault();
+
+  var $form = $(this),
+    user = $form.find('input[name="uname"]').val(),
+    pass = $form.find('input[name="pwd"]').val(),
+    url = "classes/user1.class.php";
+
+    var posting = $.post(url, {uname: user, pwd: pass});
+
+    posting.done(function(data) {
+      ajaxGet('pages/loggedIn.php', 'login');
     });
+});
 </script>
 
 <a data-toggle="modal" href="#myModal1" onclick="fixModal('login_modal')">Log in</a>
@@ -32,7 +26,7 @@
             <form method="post" id="login_form">
                 <p><input type="text" class="span3" name="uname" id="uname" placeholder="Username" autofocus></p>
                 <p><input type="password" class="span3" name="pwd" id="pwd" placeholder="Password"></p>
-                <input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="remember" <?php 
+                <input id="user_remember_me" style="float: left; margin-right: 10px;" type="checkbox" name="remember" <?php
                 if(isset($_COOKIE['blogRemember']))
                 {
                     echo 'checked="checked"';
