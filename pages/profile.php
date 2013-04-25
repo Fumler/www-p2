@@ -34,3 +34,24 @@
 	<br /><br />
 	<button class="btn btn-primary">Change Password</button>
 </form>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#profileDetails').submit(function(e) {
+			e.preventDefaut();
+
+			$.ajax({
+				type: "POST",
+				url: '../functions/changeProfile.php',
+				data: {
+					fname:$("#newFname").val(),
+					lname:$("#newLname").val(),
+					email:$("#newEmail").val()
+				},
+				//success: function(data) {
+				//	alert('Changes saved');
+				//}
+			});
+		});
+	});
+</script>

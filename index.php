@@ -13,10 +13,10 @@ session_start();
     //     }
     // }
 
-    $uid = $user->getID();
-    $profilePage = "pages/profile.php?uid=" . $uid;
-    
      $currentPage = -1;
+
+    $uid = $user->getID();
+    echo $uid . 'FITTEFAEN';
 
 ?>
 
