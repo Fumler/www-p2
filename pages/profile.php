@@ -54,7 +54,6 @@
 				}
 				else {
 					alert("Query failed T_T");
-					console.log(data);
 				}
 		});
 		// post end
