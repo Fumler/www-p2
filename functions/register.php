@@ -1,5 +1,5 @@
 <?php
-
+require_once($_SERVER["DOCUMENT_ROOT"].'/www-p2/classes/user1.class.php');
 if (isset($_POST['regUser']) && isset($_POST['regPwd']) && isset($_POST['regConfirmPwd'])) {
     if ($_POST['regPwd'] == $_POST['regConfirmPwd']) {
         $user->newUser($_POST['regUser'], $_POST['regPwd']);

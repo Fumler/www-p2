@@ -1,6 +1,7 @@
 <h1>Profile</h1>
 
 <?php 
+	session_start();
 	require_once('../functions/getUser.php');
 
 	global $currentPage;

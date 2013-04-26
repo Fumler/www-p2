@@ -13,7 +13,7 @@ session_start();
     //     }
     // }
 
-    $_SESSION[ 'uid' ] = 1;
+    // $_SESSION[ 'uid' ] = 1;
     $currentPage = -1;
 ?>
 
@@ -126,7 +126,7 @@ session_start();
                     <ul class="nav pull-right">
                         <div id="login">
                             <?php
-                            if ($user->loggedOn()) {
+                            if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {
                                 include("functions/loggedIn.php");
                             } else {
                                 include("functions/login.php");
