@@ -1,4 +1,8 @@
-<?php $page = "contact";?>
+<?php 
+	$page = "contact";
+	global $currentPage;
+	$currentPage = -1;
+?>
 <h1>Contact Us</h1>
 
 <?php

@@ -3,6 +3,8 @@
 <?php 
 	require_once('../functions/getUser.php');
 
+	global $currentPage;
+	$currentPage = -1;
 	$uid = $_GET['uid'];
 	$userInfo = getUser($uid);
 ?>

@@ -11,13 +11,19 @@
 <?php
 	session_start();
 	$_SESSION[ 'user' ] = 1;
+
+	global $currentPage;
+	$currentPage = -1;
 ?>
 
 <script src="js/pages.js"></script>
 <script type="text/javascript">
 
+	console.log("How about now?!");
+
 	$(document).ready (function () 
 	{
+		console.log("Hei " + $_SESSION['user']);
 		pages.pageSelected = pageSelected;
 		pages.init ();
 	});

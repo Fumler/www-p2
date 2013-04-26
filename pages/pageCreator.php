@@ -2,7 +2,7 @@
 
 <form id="creationform" method="post">
 	Enter the name for the new webpage: <input type="text" name="name" id="name" value="">
-	<input type="submit" name="creationsub" id="creationsub" value="Create">
+	<input type="submit" name="creationsub" id="creationsub" value="create">
 
 </form>
 
@@ -23,7 +23,6 @@ $(document).ready(function()
 	{
 		e.preventDefault(); // avoid page refresh.
 		
-
 		var name = $('#name').val();
 
 		console.log(name);
