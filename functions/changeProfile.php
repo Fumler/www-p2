@@ -4,9 +4,6 @@
 	$lname 	= $_POST['lname'];
 	$email 	= $_POST['email'];
 
-	$user->updateUser($uid, $fname, $lname, $email);
-
-	/*
 	require_once('connect.php');
 
 	// Prepare SQL statement
@@ -25,5 +22,5 @@
 		echo "success";
 	}
 
-	$sth->closeCursor();*/
+	$sth->closeCursor();
 ?>
