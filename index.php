@@ -14,11 +14,11 @@ session_start();
     // }
 
     $_SESSION[ 'uid' ] = 1;
-    $currentPage = -1;
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+<script src="js/pages.js"></script>
 <head>
     <meta charset="utf-8">
     <title>Bootstrap, from Twitter</title>
@@ -63,6 +63,7 @@ session_start();
     <script src="js/dropdown.js"></script>
     <script src="js/jquery.placeholder.js"></script>
     <script src="js/ajaxGet.js"></script>
+
     <script type="text/javascript">
         function fixModal(classId) {
             $("."+classId +" .modal").appendTo($("body"));
@@ -73,18 +74,26 @@ session_start();
             type: "GET",
             url: 'functions/logout.php',
             async: true,
-            success: function (response) {
-                // console.log(response);
-                //return response;
-                if(response == "logged out")
+            success: function (response) 
                 {
-                    ajaxGet('functions/login.php', 'login');
+                    // console.log(response);
+                    //return response;
+                    if(response == "logged out")
+                    {
+                        ajaxGet('functions/login.php', 'login');
+                    }
                 }
-            }
             });
         }
     </script>
     <script type="text/javascript">
+
+    $(document).ready(function()
+    {
+    //  pages.currentPage = -1;
+        console.log("Index.php -> currentPage: " + Pages.currentPage);
+    });
+
     /*$("document").ready(function(){
 
     //     // function loadURL(url) {

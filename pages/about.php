@@ -2,6 +2,15 @@
 	global $currentPage;
 	$currentPage = -1;
 ?>
+
+<script type="text/javascript">
+
+	$(document).ready(function()
+	{
+	    pages.currentPage = -1;
+	    console.log("about.php -> currentPage: " + pages.currentPage);
+	});
+</script>
 <h1>About us</h1>
 <p>This is a school project for the web technology course at Gjøvik University College. It is created by:</p>
 
