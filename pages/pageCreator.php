@@ -1,3 +1,7 @@
+<?php
+	session_start();
+?>
+
 <h1> Page Creator ni irasshaimase! </h1>
 
 <form id="creationform" method="post">
@@ -27,7 +31,7 @@ $(document).ready(function()
 
 		console.log(name);
 		console.log(currentPage);
-		Pages.createNewPage(name, currentPage);
+		pages.createNewPage(name, currentPage);
 	});
 });
 

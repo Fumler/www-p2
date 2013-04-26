@@ -13,7 +13,7 @@ session_start();
     //     }
     // }
 
-
+    $_SESSION[ 'uid' ] = 1;
     $currentPage = -1;
 ?>
 

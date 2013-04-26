@@ -5,7 +5,6 @@ function Pages ()
 {
 	this.currentPage = -1; // Currently selected page, root by default. 
 	this.pageSelected = null;
-
 }
 
 var pages = new Pages ();
@@ -45,8 +44,7 @@ Pages.prototype.init = function ()
 
 Pages.prototype.createNewPage = function (name, parentID)
 {
-	console.log(name);
-	console.log(parentID);
+	console.log("Crazy magical world");
 }
 
 

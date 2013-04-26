@@ -1,3 +1,10 @@
+<?php
+	session_start();
+
+	global $currentPage;
+	$currentPage = -1;
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,14 +15,6 @@
 <div id="pages">
 </div>
 
-<?php
-	session_start();
-	$_SESSION[ 'user' ] = 1;
-
-	global $currentPage;
-	$currentPage = -1;
-?>
-
 <script src="js/pages.js"></script>
 <script type="text/javascript">
 
@@ -23,7 +22,13 @@
 
 	$(document).ready (function () 
 	{
-		console.log("Hei " + $_SESSION['user']);
+		<!-- 
+		<?php
+			echo "var userID = " . $_SESSION[ 'uid' ];
+		?>
+		// -->
+
+		console.log("Hei " + userID);
 		pages.pageSelected = pageSelected;
 		pages.init ();
 	});
