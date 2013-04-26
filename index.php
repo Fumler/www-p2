@@ -63,10 +63,9 @@ session_start();
     <script src="js/dropdown.js"></script>
     <script src="js/jquery.placeholder.js"></script>
     <script src="js/ajaxGet.js"></script>
-    <script src="js/jquery.address-1.5.min.js"></script>
     <script type="text/javascript">
         function fixModal(classId) {
-            $("."+classId +" .modal").appendTo($("body"))
+            $("."+classId +" .modal").appendTo($("body"));
         }
 
         function logout(){

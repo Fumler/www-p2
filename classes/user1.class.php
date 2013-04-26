@@ -312,15 +312,13 @@ class User {
 		$sth->closeCursor();
 	}
 
-	function updateUser($uid, $fname, $lname, $email, $address, $info) {
-		$sql = 'UPDATE users SET fname=:fname, lname=:lname, email=:email, address=:address, info=:info WHERE uid=:uid';
+	function updateUser($uid, $fname, $lname, $email) {
+		$sql = 'UPDATE users SET fname=:fname, lname=:lname, email=:email WHERE uid=:uid';
 		$sth = $this->db->prepare($sql);
 		$sth->bindParam(':uid', $uid);
 		$sth->bindParam(':fname', $fname);
 		$sth->bindParam(':lname', $lname);
 		$sth->bindParam(':email', $email);
-		$sth->bindParam(':address', $address);
-		$sth->bindParam(':info', $info);
 		$sth->execute();
 
 		if ($sth->rowCount() == 0) {

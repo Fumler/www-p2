@@ -58,7 +58,7 @@
 		});
 		// post end
 	}
-
+/*
 	function changePassword() {
 		var oldPass = $('#oldPwd').val(),
 			newPass = $('#newPwd').val(),
@@ -77,5 +77,5 @@
 				}
 		});
 		//post end
-	}
+	}*/
 </script>
