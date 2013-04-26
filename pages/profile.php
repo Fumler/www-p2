@@ -3,12 +3,19 @@
 <?php 
 	session_start();
 	require_once('../functions/getUser.php');
-
-	global $currentPage;
-	$currentPage = -1;
 	$uid = $_GET['uid'];
 	$userInfo = getUser($uid);
 ?>
+
+<script type="text/javascript">
+
+	$(document).ready(function()
+	{
+	    pages.currentPage = -1;
+
+	    console.log("profile.php -> currentPage: " + pages.currentPage);
+	});
+</script>
 
 <form> 
 	<label>Username</label>

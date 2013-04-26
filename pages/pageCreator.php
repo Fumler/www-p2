@@ -10,29 +10,21 @@
 
 </form>
 
-<script src="js/pages.js"></script>
 <script type="text/javascript" language="javascript">
 
-<!-- <?php 
-	global $currentPage;
-	echo "var currentPage = " . $currentPage;
-
-	?>
-	//-->
-
-
-$(document).ready(function() 
-{
-	$('#creationform').submit(function(e)
+	$(document).ready(function() 
 	{
-		e.preventDefault(); // avoid page refresh.
-		
-		var name = $('#name').val();
+		console.log("pageCreator.php -> currentPage: " + pages.currentPage);
+		$('#creationform').submit(function(e)
+		{
+			e.preventDefault(); // avoid page refresh.
+			
+			var name = $('#name').val();
 
-		console.log(name);
-		console.log(currentPage);
-		pages.createNewPage(name, currentPage);
+			console.log(name);
+			console.log(pages.currentPage);
+			pages.createNewPage(name, pages.currentPage);
+		});
 	});
-});
 
 </script>
