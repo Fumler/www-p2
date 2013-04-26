@@ -15,9 +15,6 @@ session_start();
 
 
     $currentPage = -1;
-
-    $uid = $user->getID();
-
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +86,7 @@ session_start();
         }
     </script>
     <script type="text/javascript">
-    // $(document).ready(function(){
+    /*$("document").ready(function(){
 
     //     // function loadURL(url) {
     //     //     console.log("loadURL: " + url);
@@ -107,7 +104,7 @@ session_start();
     //     //     loadURL($(this).attr('href'));
     //     // });
 
-    //     });
+        });*/
     </script>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
@@ -120,8 +117,8 @@ session_start();
                 <a class="brand" href="#">Fronter 2.0</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li><a href="" onclick="ajaxGet('pages/home.php', 'content')">Home</a></li>
-                        <li><a href="pages/about.php" rel="address:/about">About</a></li>
+                        <li><a href="#" onclick="ajaxGet('pages/home.php', 'content')">Home</a></li>
+                        <li><a href="#" onclick="ajaxGet('pages/about.php', 'content')">About</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/contact.php', 'content')">Contact</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/pageListing.php', 'content')">My Pages</a></li>
                         <li><a href="#" onclick="ajaxGet('pages/pageCreator.php', 'content')">Create new page</a></li>
@@ -142,7 +139,6 @@ session_start();
         </div>
 
     </div>
-    <?php echo $_SERVER["DOCUMENT_ROOT"].'/www-p2/functions/connect.php';?>
     <div id="content" class="span9" >
         <script>
         $(document).ready (function () {

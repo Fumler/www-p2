@@ -326,6 +326,9 @@ class User {
 		if ($sth->rowCount() == 0) {
 			throw new Exception('Query failed');
 		}
+		else {
+			echo "success";
+		}
 
 		$sth->closeCursor();
 	}

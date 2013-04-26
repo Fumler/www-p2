@@ -1,11 +1,8 @@
 <?php 
-	// Fetch user ID
-	$uid = $_POST['uid'];
-
-	// Store post vars
-	$fname = $_POST['fname'];
-	$lname = $_POST['lname'];
-	$email = $_POST['email'];
+	$uid 	= $_POST['uid'];
+	$fname 	= $_POST['fname'];
+	$lname 	= $_POST['lname'];
+	$email 	= $_POST['email'];
 
 	require_once('connect.php');
 
@@ -20,6 +17,9 @@
 
 	if ($sth->rowCount() == 0) {
 		throw new Exception('Query failed');
+	}
+	else {
+		echo "success";
 	}
 
 	$sth->closeCursor();
