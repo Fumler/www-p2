@@ -1,12 +1,12 @@
 <?php 
-	// Fetch user ID
-	$uid = $_POST['uid'];
+	$uid 	= $_POST['uid'];
+	$fname 	= $_POST['fname'];
+	$lname 	= $_POST['lname'];
+	$email 	= $_POST['email'];
 
-	// Store post vars
-	$fname = $_POST['fname'];
-	$lname = $_POST['lname'];
-	$email = $_POST['email'];
+	$user->updateUser($uid, $fname, $lname, $email);
 
+	/*
 	require_once('connect.php');
 
 	// Prepare SQL statement
@@ -21,6 +21,9 @@
 	if ($sth->rowCount() == 0) {
 		throw new Exception('Query failed');
 	}
+	else {
+		echo "success";
+	}
 
-	$sth->closeCursor();
+	$sth->closeCursor();*/
 ?>

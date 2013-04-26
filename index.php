@@ -15,10 +15,6 @@ session_start();
 
 
      $currentPage = -1;
-
-    $uid = $user->getID();
-    echo $uid . 'FITTEFAEN';
-
 ?>
 
 <!DOCTYPE html>
