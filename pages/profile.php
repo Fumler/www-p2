@@ -5,6 +5,8 @@
 	require_once('../functions/getUser.php');
 
 	global $user;
+	global $currentPage;
+	$currentPage = -1;
 
 	$uid = $_GET['uid'];
 	$userInfo = getUser($uid);

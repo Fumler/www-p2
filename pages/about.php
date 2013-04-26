@@ -1,3 +1,7 @@
+<?php
+	global $currentPage;
+	$currentPage = -1;
+?>
 <h1>About us</h1>
 <p>This is a school project for the web technology course at Gjøvik University College. It is created by:</p>
 

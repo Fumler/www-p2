@@ -1,3 +1,8 @@
+<?php
+    global $currentPage1;
+    $currentPage = -1;
+?>
+
     <div class="container-fluid">
             <div class="span9">
                 <div class="row-fluid">

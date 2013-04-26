@@ -14,10 +14,9 @@ session_start();
     // }
 
 
-     $currentPage = -1;
+    $currentPage = -1;
 
     $uid = $user->getID();
-    echo $uid . 'FITTEFAEN';
 
 ?>
 
@@ -90,25 +89,25 @@ session_start();
         }
     </script>
     <script type="text/javascript">
-    $("document").ready(function(){
+    // $(document).ready(function(){
 
-        function loadURL(url) {
-            console.log("loadURL: " + url);
-            $("#content").load(url);
-        }
+    //     // function loadURL(url) {
+    //     //     console.log("loadURL: " + url);
+    //     //     $("#content").load(url);
+    //     // }
 
-        $.address.init(function(event) {
-            console.log("init: " + $('[rel=address:' + event.value + ']').attr('href'));
-        }).change(function(event) {
-            $("#content").load($('[rel=address:' + event.value + ']').attr('href'));
-            console.log("change");
-        })
+    //     // // $.address.init(function(event) {
+    //     // //     console.log("init: " + $('[rel=address:' + event.value + ']').attr('href'));
+    //     // // }).change(function(event) {
+    //     // //     $("#content").load($('[rel=address:' + event.value + ']').attr('href'));
+    //     // //     console.log("change");
+    //     // // })
 
-        $('a').click(function(){
-            loadURL($(this).attr('href'));
-        });
+    //     // $('a').click(function(){
+    //     //     loadURL($(this).attr('href'));
+    //     // });
 
-        });
+    //     });
     </script>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
