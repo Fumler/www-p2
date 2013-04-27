@@ -27,16 +27,25 @@ if( isset($_POST[ 'for_user' ]))
 	die( json_encode ( $sth -> fetchAll() ));	// Outputs the message and ends the script
 }
 
-// no user requested, or no user logged in.
-if( !isset($_SESSION[ 'uid' ])) 
+if( isset($_POST[ 'pageId' ]))
 {
-	die( json_encode (array ('error' => 'No user logged on')));
+	$sql = 'SELECT content FROM pages WHERE id = ?';
+	$sth = $db -> prepare ($sql);
+	$sth -> execute (array ($_POST[ 'pageId' ]));
+
+	die( json_encode ($sth -> fetchAll() ));	// Outputs the message and ends the script
 }
 
-// Return pages for the logged in user
-$sql = 'SELECT name, id, uid FROM pages WHERE uid=? AND parentid=? ORDER BY name';
-$sth = $db -> prepare ($sql);
-$sth -> execute (array ($_SESSION[ 'uid' ], $_POST[ 'id' ]));
+// no user requested, or no user logged in.
+if( isset($_SESSION[ 'uid' ])) 
+{
+	// Return pages for the logged in user
+	$sql = 'SELECT name, id, uid FROM pages WHERE uid=? AND parentid=? ORDER BY name';
+	$sth = $db -> prepare ($sql);
+	$sth -> execute (array ($_SESSION[ 'uid' ], $_POST[ 'id' ]));
 
-die( json_encode ($sth -> fetchAll() ));
+	die( json_encode ($sth -> fetchAll() ));
+}
+
+die("no query");
 ?>

@@ -28,7 +28,7 @@ Pages.prototype.init = function ()
 	            (
 	            	'<li id="page_' + this.currentUser + '_' + data[i].id + '">' + 
 	                '<span class="pageicon">&nbsp;</span>' + 
-	                '<a href="javascript:pages.openClose(' + data[i].id + ');">' + 
+	                '<a href="javascript:pages.openPage(' + data[i].id + ');">' + 
 	                data[i].name + '</a></li>'
 	            );
 
@@ -69,7 +69,19 @@ Pages.prototype.createNewPage = function (name, parentID)
 
 Pages.prototype.openPage = function (id)
 {
+	this.pageSelected (id);
+	this.currentPage = id;
 
+	$.ajax ({
+            url: 'functions/fetchPages.php',
+            data: {'pageId': id},
+            type: 'post',
+            success: function (data) 
+            {
+            	//$("#content").html(data);
+            	$("#content").html(data[0][0]);
+            }
+        });
 }
 
 
