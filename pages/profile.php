@@ -82,8 +82,8 @@
 				if (data == 'success') {
 					alert("Password changed!");
 				}
-				else if (data == 'derpiderpidum') {
-					alert("derps");
+				else if (data == 'failure') {
+					alert("failure");
 				}
 				else {
 					alert("NEI");
