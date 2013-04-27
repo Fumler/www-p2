@@ -3,6 +3,16 @@
 	global $currentPage;
 	$currentPage = -1;
 ?>
+
+<script type="text/javascript">
+
+	$(document).ready(function()
+	{
+	    pages.currentPage = -1;
+	    console.log("contact.php -> currentPage: " + pages.currentPage);
+	});
+</script>
+
 <h1>Contact Us</h1>
 
 <?php

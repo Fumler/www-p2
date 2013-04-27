@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+include($_SERVER["DOCUMENT_ROOT"].'/www-p2/functions/connect.php');
 define ('SALT', 'SADFOJKadja§!aojd£$]€}[{');
 define ('SITEKEY', 'NativeAmericanwarriorTontorecOuntstheuntoldtalesthattrAnsformedJohnReidamanoftheLawintoalegeNdofjustice');
 
@@ -23,12 +24,13 @@ class User {
 	 *
 	 * @param PDO database handler $db
 	 */
-	function User ($db) {
-		global $_POST, $_SESSION;
+	function User () {
+		global $_POST, $_SESSION, $db;
+
 		// $this->db = $db;										// Store a reference to the database handler
 		if (isset ($_POST['uname']))
 		{														// Try to log in
-
+			//include('functions/connect.php');
 			$this->db = $db;
 			$this->uname = $_POST['uname'];
 			$sql = 'SELECT * FROM users WHERE uname=:uname';
@@ -378,7 +380,7 @@ class User {
 
 }
 
-$user = new User ($db);											// Create a new object of the User class
+$user = new User ();											// Create a new object of the User class
 if (isset ($needLogin) && !$user->loggedOn())					// check login statuss
 	die ('You need to be logged on to do this!');
 

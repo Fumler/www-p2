@@ -1,16 +1,28 @@
 <script type="text/javascript">
-$("#login_form").submit(function(e) {
-  e.preventDefault();
+$(document).ready(function()
+{
+     $('#login_form').submit(function(e) {
+        e.preventDefault();
 
-  var $form = $(this),
-    user = $form.find('input[name="uname"]').val(),
-    pass = $form.find('input[name="pwd"]').val(),
-    url = "classes/user1.class.php";
-
-    var posting = $.post(url, {uname: user, pwd: pass});
-
-    posting.done(function(data) {
-      ajaxGet('pages/loggedIn.php', 'login');
+        $.ajax({
+            type: "POST",
+            url: 'classes/user1.class.php',
+            async: true,
+            data: {
+                pwd:$("#pwd").val(),
+                uname:$("#uname").val()
+            },
+            success: function(data)
+            {
+                if (data === 'login') {
+                    $('#myModal1').modal('hide');
+                    ajaxGet('functions/loggedIn.php', 'login');
+                }
+                else {
+                alert('Invalid Credentials');
+                }
+            }
+        });
     });
 });
 </script>
@@ -68,7 +80,7 @@ $("#login_form").submit(function(e) {
            success: function(data)
            {
             console.log($("#regUser").val());
-                if (data === ' success') {
+                if (data === 'success') {
                     $.ajax({
                         type: "POST",
                         url: 'classes/user1.class.php',
@@ -78,7 +90,7 @@ $("#login_form").submit(function(e) {
                         },
                         success: function(data)
                         {
-                            if (data === ' login') {
+                            if (data === 'login') {
                                 $('#myModal2').modal('hide');
                                 ajaxGet('functions/loggedIn.php', 'login');
                             }

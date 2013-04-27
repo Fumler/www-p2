@@ -1,7 +1,16 @@
 <?php
-    global $currentPage1;
+    global $currentPage;
     $currentPage = -1;
 ?>
+
+<script type="text/javascript">
+
+    $(document).ready(function()
+    {
+        pages.currentPage = -1;
+        console.log("home.php -> currentPage: " + pages.currentPage);
+    });
+</script>
 
     <div class="container-fluid">
             <div class="span9">

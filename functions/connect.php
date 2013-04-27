@@ -7,5 +7,5 @@
 	    die();
 	}
 
-    require_once($_SERVER["DOCUMENT_ROOT"].'/www-p2/classes/user1.class.php');
+    //require_once($_SERVER["DOCUMENT_ROOT"].'/www-p2/classes/user1.class.php');
 ?>
