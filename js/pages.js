@@ -69,7 +69,16 @@ Pages.prototype.openPage = function (id)
 	this.pageSelected (id);
 	this.currentPage = id;
 
-	ajaxGet();
+	$.ajax ({
+            url: 'functions/fetchPages.php',
+            data: {'pageId': id},
+            type: 'post',
+            success: function (data) 
+            {
+            	//$("#content").html(data);
+            	$("#content").html(data[0][0]);
+            }
+        });
 }
 
 
