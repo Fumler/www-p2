@@ -32,7 +32,7 @@ Pages.prototype.init = function ()
 
 	            	'<li id="page_' + data[i].uid + '_' + data[i].id + '">' + 
 	                '<span class="pageicon">&nbsp;</span>' + 
-	                '<a href="javascript:pages.openClose(' + data[i].id + ');">' + 
+	                '<a href="javascript:pages.openPage(' + data[i].id + ');">' + 
 	                data[i].name + '</a></li>'
 	            );
 
@@ -51,7 +51,10 @@ Pages.prototype.createNewPage = function (name, parentID)
 
 Pages.prototype.openPage = function (id)
 {
+	this.pageSelected (id);
+	this.currentPage = id;
 
+	ajaxGet();
 }
 
 
