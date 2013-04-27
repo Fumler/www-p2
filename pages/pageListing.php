@@ -23,14 +23,13 @@
 
 <script type="text/javascript">
 
-	console.log("How about now?!");
-
 	$(document).ready (function () 
 	{
-		pages.init();
 		var userID = <?php echo $_SESSION[ 'uid' ]?>;
+		pages.currentUser = userID;
+		console.log("pages.currentUser = " + pages.currentUser);
 
-		console.log("Hei " + userID);
+		pages.init();
 		pages.pageSelected = pageSelected;
 	});
 
@@ -38,7 +37,6 @@
 	{
 		console.log("Page selected: " + id);
 		pages.currentPage = id;
-		console.log(pages.currentPage);
 	}
 
 </script>
