@@ -1,5 +1,7 @@
 <?php 
-	session_start();
+	if(session_id()=='') {
+    	session_start();
+    }
 	$profilePage = "pages/profile.php?uid=";
 
 	$uid = $_SESSION['uid'];

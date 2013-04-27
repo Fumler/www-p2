@@ -81,14 +81,27 @@
 			function (data) {
 				if (data == 'success') {
 					alert("Password changed!");
+					
+					resetPwdFields();
 				}
-				else if (data == 'derpiderpidum') {
-					alert("derps");
+				else if (data == 'noChange' || data == 'noMatch') {
+					alert("Unable to change password, try again");
+
+					resetPwdFields();
 				}
 				else {
-					alert("NEI");
+					alert("Something terrible happened T_T");
+
+					resetPwdFields();
 				}
 		});
 		//post end
+	}
+
+	function resetPwdFields() {
+		// Resets input fields for passwords
+		$('#oldPwd').val("");
+		$('#newPwd').val("");
+		$('#newPwdR').val("");
 	}
 </script>

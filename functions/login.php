@@ -6,7 +6,7 @@ $(document).ready(function()
 
         $.ajax({
             type: "POST",
-            url: 'classes/user1.class.php',
+            url: 'classes/loginUser.php',
             async: true,
             data: {
                 pwd:$("#pwd").val(),
@@ -75,15 +75,14 @@ $(document).ready(function()
         e.preventDefault();
         $.ajax({
            type: "POST",
-           url: 'functions/register.php',
+           url: 'classes/newUser.php',
            data: $(this).serialize(),
            success: function(data)
            {
-            console.log($("#regUser").val());
                 if (data === 'success') {
                     $.ajax({
                         type: "POST",
-                        url: 'classes/user1.class.php',
+                        url: 'classes/loginUser.php',
                         data: {
                             pwd:$("#regPwd").val(),
                             uname:$("#regUser").val()
