@@ -21,11 +21,12 @@
 
 		$oldpwd = $uid.$oldpwd.SALT;
 		$sth->bindParam ('oldpwd', hash_hmac('sha512', $oldpwd, SITEKEY));
-		
+
 		$sth->execute ();
 
 		if ($sth->rowCount()==0) {
 			throw new Exception ('Unable to change password');
+			echo "noChange";
 		}
 		else {
 			echo "success";
@@ -35,6 +36,6 @@
 	}
 	else {
 		throw new Exception('Passwords don\'t match');
-		echo "failure";
+		echo "noMatch";
 	}
 ?>
