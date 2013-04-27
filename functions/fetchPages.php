@@ -28,7 +28,7 @@ if( isset($_POST[ 'for_user' ]))
 }
 
 // no user requested, or no user logged in.
-if( !isset($_SESSION[ 'user' ])) 
+if( !isset($_SESSION[ 'uid' ])) 
 {
 	die( json_encode (array ('error' => 'No user logged on')));
 }
@@ -36,7 +36,7 @@ if( !isset($_SESSION[ 'user' ]))
 // Return pages for the logged in user
 $sql = 'SELECT name, id, uid FROM pages WHERE uid=? AND parentid=? ORDER BY name';
 $sth = $db -> prepare ($sql);
-$sth -> execute (array ($_SESSION[ 'user' ], $_POST[ 'id' ]));
+$sth -> execute (array ($_SESSION[ 'uid' ], $_POST[ 'id' ]));
 
 die( json_encode ($sth -> fetchAll() ));
 ?>
