@@ -65,29 +65,6 @@ session_start();
     <script src="js/ajaxGet.js"></script>
 
     <script type="text/javascript">
-        function fixModal(classId) {
-            $("."+classId +" .modal").appendTo($("body"));
-        }
-
-        function logout(){
-            $.ajax({
-            type: "GET",
-            url: 'functions/logout.php',
-            async: true,
-            success: function (response) 
-                {
-                    // console.log(response);
-                    //return response;
-                    if(response == "logged out")
-                    {
-                        ajaxGet('functions/login.php', 'login');
-                    }
-                }
-            });
-        }
-    </script>
-    <script type="text/javascript">
-
     $(document).ready(function()
     {
     //  pages.currentPage = -1;
@@ -157,6 +134,29 @@ session_start();
         </script>
     </div>
 
+    <script type="text/javascript">
+        function fixModal(classId) {
+            $("."+classId +" .modal").appendTo($("body"));
+        }
+
+        function logout(){
+            $.ajax({
+            type: "GET",
+            url: 'functions/logout.php',
+            async: true,
+            success: function (response) 
+                {
+                    // console.log(response);
+                    //return response;
+                    if(response == "logged out")
+                    {
+                        ajaxGet('functions/login.php', 'login');
+                        ajaxGet("pages/home.php", "content");
+                    }
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
