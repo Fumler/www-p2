@@ -30,7 +30,7 @@
 	<label>Repeat New Password</label>
 	<input type="password" id="newPwdR" class="input-xlarge" />
 	<br /><br />
-	<button type="button" class="btn btn-primary">Change Password</button>
+	<button type="button" class="btn btn-primary" onclick="changePassword();">Change Password</button>
 </form>
 
 <script type="text/javascript">
@@ -60,11 +60,11 @@
 		});
 		// post end
 	}
-/*
+
 	function changePassword() {
 		var oldPass = $('#oldPwd').val(),
 			newPass = $('#newPwd').val(),
-			newPassR = $('#newPassR').val();
+			newPassR = $('#newPwdR').val();
 
 		var url = 'functions/changePassword.php';
 
@@ -74,10 +74,13 @@
 				if (data == 'success') {
 					alert("Password changed!");
 				}
-				else {
+				else if (data == 'derpiderpidum') {
 					alert("derps");
+				}
+				else {
+					alert("NEI");
 				}
 		});
 		//post end
-	}*/
+	}
 </script>

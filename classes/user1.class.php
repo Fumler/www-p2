@@ -169,6 +169,8 @@ class User {
 	 * @throws Exception thrown if the current password doesn´t match the one given
 	 */
 	function changePassword ($oldpwd, $pwd) {
+		echo "hei";
+
 		$sql = 'UPDATE users SET pwd=:pwd WHERE uid=:uid AND pwd=:oldpwd';
 		$sth = $this->db->prepare ($sql);
 		$sth->bindParam (':uid', $this->getID());				// Change the password for the currently logged in user
@@ -179,6 +181,10 @@ class User {
 		$sth->execute ();
 		if ($sth->rowCount()==0) {								// If no rows affected then the old password was probably wrong
 			throw new Exception ('Unable to change password');
+			echo "failure";
+		}
+		else {
+			echo "success";
 		}
 		$sth->closeCursor();									// Always close all cursors
 	}
