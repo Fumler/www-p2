@@ -46,7 +46,7 @@ Pages.prototype.createNewPage = function (name, parentID)
 	console.log("Name: " + name + ", Parent: " + parentID);
 
 	$.ajax ({
-		url: 'createNewPage.php',
+		url: 'functions/createNewPage.php',
 		data: {'name': name, 'parentID': parentID},
 		type: 'post',
 		success: function (data) 
@@ -58,6 +58,9 @@ Pages.prototype.createNewPage = function (name, parentID)
 			else
 			{
 				console.log("New Page Created");
+
+				// $("#content").html(data);
+				// pages.currentPage = data;
 			}
 		}
 	});
@@ -94,8 +97,6 @@ Pages.prototype.openClose = function (id)
             	console.log(data);
             	if(data.length > 0) // If subpages
             	{
-            		console.log($('#page_' + pages.currentUser + '_' + id));
-            		console.log("FAEN!: " + $('#page_' + pages.currentUser + '_' + id)[0]);
             		$('#page_' + pages.currentUser + '_' + id)[0].hasSubPages = true;
             		$('#page_' + pages.currentUser + '_' + id).toggleClass ('opened');
             	}
