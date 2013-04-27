@@ -1,7 +1,8 @@
 <?php 
-	// TEMPORARY
-	define ('SALT', 'SADFOJKadja§!aojd£$]€}[{');
-	define ('SITEKEY', 'NativeAmericanwarriorTontorecOuntstheuntoldtalesthattrAnsformedJohnReidamanoftheLawintoalegeNdofjustice');
+	require_once('../classes/userFunctions.php');
+
+	$SALT = getSalt();
+	$SITEKEY = getSitekey();
 
 	$uid 	= $_POST['uid'];
 	$oldpwd = $_POST['oldPwd'];
@@ -16,11 +17,11 @@
 
 		$sth->bindParam (':uid', $uid);	
 
-		$pwd = $uid.$pwd.SALT;
-		$sth->bindParam ('pwd', hash_hmac('sha512', $pwd, SITEKEY));
+		$pwd = $uid.$pwd.$SALT;
+		$sth->bindParam ('pwd', hash_hmac('sha512', $pwd, $SITEKEY));
 
-		$oldpwd = $uid.$oldpwd.SALT;
-		$sth->bindParam ('oldpwd', hash_hmac('sha512', $oldpwd, SITEKEY));
+		$oldpwd = $uid.$oldpwd.$SALT;
+		$sth->bindParam ('oldpwd', hash_hmac('sha512', $oldpwd, $SITEKEY));
 
 		$sth->execute ();
 
