@@ -59,8 +59,12 @@ Pages.prototype.createNewPage = function (name, parentID)
 			{
 				console.log("New Page Created");
 
-				// $("#content").html(data);
-				// pages.currentPage = data;
+				console.log(data[0][0].content);
+				console.log(data[0][0].id);
+
+
+				$("#content").html(data[0][0].content);
+				pages.currentPage = data[0][0].id;
 			}
 		}
 	});

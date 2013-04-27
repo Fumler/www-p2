@@ -12,7 +12,10 @@
 		$parentid = $_POST[ 'parentID' ];
 		$uid = $_SESSION[ 'uid' ];
 		$name = $_POST[ 'name' ];
-		$content = "<h1>" + $name + "</h1>";
+		$content = "<h1>" . $name . "</h1>";
+
+
+
 
 		$sql = 'INSERT INTO pages (parentid, uid, name, content) VALUES (?, ?, ?, ?)';
 		$sth = $db -> prepare( $sql );
@@ -31,13 +34,13 @@
 
 		$sth -> execute (array ( $uid, $parentid, $name ));
 
-		$result = array();
-		while($row = $sth -> fetch( PDO::FETCH_ASSOC ))
-		{
-			$result['data'][] = $row;
-		}
+		// $result = array();
+		// while($row = $sth -> fetch( PDO::FETCH_ASSOC ))
+		// {
+		// 	$result['data'][] = $row;
+		// }
 
-		die( json_encode (array ( $result )));
+		die( json_encode (array ( $sth -> fetchAll() )));
 	}
 
 	die (json_encode (array ('error' => 'No user is logged in')));
