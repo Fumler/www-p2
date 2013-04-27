@@ -38,7 +38,7 @@
 	<label>Repeat New Password</label>
 	<input type="password" id="newPwdR" class="input-xlarge" />
 	<br /><br />
-	<button type="button" class="btn btn-primary">Change Password</button>
+	<button type="button" class="btn btn-primary" onclick="changePassword();">Change Password</button>
 </form>
 
 <script type="text/javascript">
@@ -68,11 +68,11 @@
 		});
 		// post end
 	}
-/*
+
 	function changePassword() {
 		var oldPass = $('#oldPwd').val(),
 			newPass = $('#newPwd').val(),
-			newPassR = $('#newPassR').val();
+			newPassR = $('#newPwdR').val();
 
 		var url = 'functions/changePassword.php';
 
@@ -81,11 +81,27 @@
 			function (data) {
 				if (data == 'success') {
 					alert("Password changed!");
+					
+					resetPwdFields();
+				}
+				else if (data == 'noChange' || data == 'noMatch') {
+					alert("Unable to change password, try again");
+
+					resetPwdFields();
 				}
 				else {
-					alert("derps");
+					alert("Something terrible happened T_T");
+
+					resetPwdFields();
 				}
 		});
 		//post end
-	}*/
+	}
+
+	function resetPwdFields() {
+		// Resets input fields for passwords
+		$('#oldPwd').val("");
+		$('#newPwd').val("");
+		$('#newPwdR').val("");
+	}
 </script>
