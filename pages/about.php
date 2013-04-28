@@ -1,3 +1,4 @@
+
 <?php
 	global $currentPage;
 	$currentPage = -1;
@@ -5,8 +6,10 @@
 
 <script type="text/javascript">
 
+
 	$(document).ready(function()
 	{
+        $("#edit_menu").html('');
 	    pages.currentPage = -1;
 	    console.log("about.php -> currentPage: " + pages.currentPage);
 	});
