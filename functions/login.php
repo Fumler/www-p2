@@ -117,9 +117,9 @@ $(document).ready(function()
         </div>
         <div class="modal-body">
             <form method="post" action='' id="register_form">
-                <p><input type="text" class="span3" name="regUser" id="regUser" placeholder="Username" autofocus></p>
-                <p><input type="password" class="span3" name="regPwd" id="regPwd" placeholder="Password"></p>
-                <p><input type="password" class="span3" name="regConfirmPwd" id="regConfirmPwd" placeholder="Confirm password"></p>
+                <p><input type="text" class="span3" name="regUser" size="30" id="regUser" placeholder="Username" autofocus required></p>
+                <p><input type="password" class="span3" name="regPwd" size="30" id="regPwd" placeholder="Password" pattern="(\S{4,10})" required></p>
+                <p><input type="password" class="span3" name="regConfirmPwd" size="30" id="regConfirmPwd" placeholder="Confirm password" pattern="(\S{4,10})" required></p>
                 <p><button type="submit" class="btn btn-primary">Sign up</button>
                 </p>
                 <p><a href="#">Forgot Password?</a></p>

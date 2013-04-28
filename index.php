@@ -110,6 +110,8 @@ session_start();
                     </ul>
 
                     <ul class="nav pull-right">
+                        <div id="settings">
+                        </div>
                         <div id="login">
                             <?php
                             if (isset($_SESSION['uid']) && !empty($_SESSION['uid'])) {

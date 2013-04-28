@@ -84,6 +84,8 @@ Pages.prototype.openPage = function (id)
             {
             	//$("#content").html(data);
             	$("#content").html(data[0][0]);
+
+            	$("#settings").html('<li><a href="#" onclick="'+"ajaxGet('pages/settings.php', 'content')"+'">Settings</a></li>'); 
             }
         });
 }
