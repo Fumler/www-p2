@@ -79,10 +79,13 @@ session_start();
 
         $.address.init(function(event) {
             console.log("init: " + $('[rel="address:' + event.value + '"]').attr('href'));
+            $.address.strict(false);
         }).change(function(event) {
             $("#content").load($('[rel="address:' + event.value + '"]').attr('href'));
             console.log("change");
-        })
+
+        });
+        $.address.title("Fronter 2.0");
 
         $('a').click(function(){
             loadURL($(this).attr('href'));
