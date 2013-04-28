@@ -2,7 +2,7 @@
 	session_start();
 ?>
 
-<h1> Page Creator ni irasshaimase! </h1>
+<h1> Welcome to the Page Creator </h1>
 
 <form id="creationform" method="post">
 	Enter the name for the new webpage: <input type="text" name="name" id="name" value="">

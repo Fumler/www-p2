@@ -32,8 +32,12 @@ session_start();
         body { padding-top: 60px; padding-bottom: 40px; }
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="css/flat-ui.css" rel="stylesheet">
+    <!-- <link href="css/flat-ui.css" rel="stylesheet"> -->
     <link href="css/custom.css" rel="stylesheet">
+
+    <style type="text/css" id="styles">
+        @import "css/flat-ui.css";
+    </style>
 
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -68,22 +72,17 @@ session_start();
     <script type="text/javascript">
     $(document).ready(function()
     {
-    //  pages.currentPage = -1;
-        console.log("Index.php -> currentPage: " + Pages.currentPage);
-
 
         function loadURL(url) {
             console.log("loadURL: " + url);
             $("#content").load(url);
         }
-
         $.address.init(function(event) {
             console.log("init: " + $('[rel="address:' + event.value + '"]').attr('href'));
             $.address.strict(false);
         }).change(function(event) {
             $("#content").load($('[rel="address:' + event.value + '"]').attr('href'));
             console.log("change");
-
         });
         $.address.title("Fronter 2.0");
 
