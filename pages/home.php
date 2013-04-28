@@ -10,6 +10,7 @@
         pages.currentPage = -1;
         console.log("home.php -> currentPage: " + pages.currentPage);
     });
+
 </script>
 
     <div class="container-fluid">
