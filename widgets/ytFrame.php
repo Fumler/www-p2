@@ -1,14 +1,14 @@
-    <div id="iframeDiv" style="border-style: solid; display: inline-block;">
-        <a href="#editModal" role="button" data-toggle="modal" style="float: left;"><i class="icon-edit"></i></a>
-        <a href="#deleteModal" role="button" data-toggle="modal" style="float: right;"><i class="icon-trash"></i></a><br />
-        <iframe id="iframeID" class="youtube-player" type="text/html" src="http://www.youtube.com/embed/4a-apSofamw" width="640" height="385" allowfullscreen />
+    <div id="ytFrameDiv" style="border-style: solid; display: inline-block;">
+        <a href="#ytEditModal" role="button" data-toggle="modal" style="float: left;"><i class="icon-edit"></i></a>
+        <a href="#ytDeleteModal" role="button" data-toggle="modal" style="float: right;"><i class="icon-trash"></i></a><br />
+        <iframe id="ytFrameID" class="youtube-player" type="text/html" src="http://www.youtube.com/embed/4a-apSofamw" width="640" height="385" allowfullscreen />
     </div>
 
     <!-- The edit modal -->
-    <div id="editModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div id="ytEditModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ytEditModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-            <h3 id="editModalLabel">Edit frame</h3>
+            <h3 id="ytEditModalLabel">Edit frame</h3>
         </div>
         <div class="modal-body">
             <form id="editForm">
@@ -23,10 +23,10 @@
     </div>
 
     <!-- The delete modal -->
-    <div id="deleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div id="ytDeleteModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ytDeleteModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-            <h3 id="deleteModalLael">Delete?</h3>
+            <h3 id="ytDeleteModalLabel">Delete?</h3>
         </div>
         <div class="modal-body">
             <p>Really delete?</p>
@@ -43,11 +43,11 @@
     function saveContent() {
         var input = $('#contentInput').val();
 
-        document.getElementById('iframeID').src = "http://www.youtube.com/embed/" + input;
+        document.getElementById('ytFrameID').src = "http://www.youtube.com/embed/" + input;
     }
 
     function deleteDiv() {
-        var div = document.getElementById('iframeDiv');
+        var div = document.getElementById('ytFrameDiv');
         div.parentNode.removeChild(div);
     }
 
