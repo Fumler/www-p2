@@ -18,13 +18,16 @@
 </head>
 <h1>Page Listing</h1>
 
+
+
 <div id="pages">
 </div>
 
 <script type="text/javascript">
 
-	$(document).ready (function () 
+	$(document).ready (function ()
 	{
+		$("#edit_menu").html('');
 		var userID = <?php echo $_SESSION[ 'uid' ]?>;
 		pages.currentUser = userID;
 		console.log("pages.currentUser = " + pages.currentUser);
@@ -33,7 +36,7 @@
 		pages.pageSelected = pageSelected;
 	});
 
-	function pageSelected (id) 
+	function pageSelected (id)
 	{
 		console.log("Page selected: " + id);
 		pages.currentPage = id;

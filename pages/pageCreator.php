@@ -12,13 +12,14 @@
 
 <script type="text/javascript" language="javascript">
 
-	$(document).ready(function() 
+	$(document).ready(function()
 	{
+		$("#edit_menu").html('');
 		console.log("pageCreator.php -> currentPage: " + pages.currentPage);
 		$('#creationform').submit(function(e)
 		{
 			e.preventDefault(); // avoid page refresh.
-			
+
 			var name = $('#name').val();
 
 			console.log(name);

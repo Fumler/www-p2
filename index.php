@@ -125,8 +125,9 @@ session_start();
         </div>
 
     </div>
-
+    <div id="edit_menu"></div>
     <div id="content" class="span9" >
+
         <script>
         $(document).ready (function () {
             //var div = document.getElementById('content');

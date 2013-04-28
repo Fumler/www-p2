@@ -1,16 +1,16 @@
 
 
 // pages class
-function Pages () 
+function Pages ()
 {
-	this.currentPage = -1; // Currently selected page, root by default. 
+	this.currentPage = -1; // Currently selected page, root by default.
 	this.pageSelected = null;
 	this.currentUser = -1;
 }
 
 var pages = new Pages ();
 
-Pages.prototype.init = function () 
+Pages.prototype.init = function ()
 {
 	$.ajax({
 		url: 'functions/fetchPages.php',
@@ -26,9 +26,9 @@ Pages.prototype.init = function ()
 	        {
 	            $('#pages .pages').append
 	            (
-	            	'<li id="page_' + this.currentUser + '_' + data[i].id + '">' + 
-	                '<span class="pageicon">&nbsp;</span>' + 
-	                '<a href="javascript:pages.openPage(' + data[i].id + ');">' + 
+	            	'<li id="page_' + this.currentUser + '_' + data[i].id + '">' +
+	                '<span class="pageicon">&nbsp;</span>' +
+	                '<a href="javascript:pages.openPage(' + data[i].id + ');">' +
 	                data[i].name + '</a></li>'
 	            );
 
@@ -49,7 +49,7 @@ Pages.prototype.createNewPage = function (name, parentID)
 		url: 'functions/createNewPage.php',
 		data: {'name': name, 'parentID': parentID},
 		type: 'post',
-		success: function (data) 
+		success: function (data)
 		{
 			if(data.error)
 			{
@@ -80,16 +80,31 @@ Pages.prototype.openPage = function (id)
             url: 'functions/fetchPages.php',
             data: {'pageId': id},
             type: 'post',
-            success: function (data) 
+            success: function (data)
             {
             	//$("#content").html(data);
             	$("#content").html(data[0][0]);
+
+                if(pages.currentUser == data[0][1]) {
+                    $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('p')" + ">Paragraph</a>");
+                    $("#edit_menu").append("<a href='derp'>derp</a>");
+                    $("#edit_menu").append("<a href='derp'>derp</a>");
+                    $("#edit_menu").append("<a href='derp'>derp</a>");
+                }
             }
         });
 }
 
+Pages.prototype.insertWidget = function (type)
+{
+    if(type == "p") {
+        $("#content").append("<p>Hello world!</p>");
+    }
 
-Pages.prototype.openClose = function (id) 
+}
+
+
+Pages.prototype.openClose = function (id)
 {
 	this.pageSelected(id);
 	this.currentPage = id;
@@ -108,7 +123,7 @@ Pages.prototype.openClose = function (id)
             url: 'functions/fetchPages.php',
             data: {'id': id},
             type: 'post',
-            success: function (data) 
+            success: function (data)
             {
             	console.log(data);
             	if(data.length > 0) // If subpages
@@ -121,12 +136,12 @@ Pages.prototype.openClose = function (id)
             		$('#page_' + pages.currentUser + '_' + id)[0].hasSubPages = false;
             	}
 
-                for (var i = 0; i < data.length; i++) 
+                for (var i = 0; i < data.length; i++)
                 {
                     $('#page_' + pages.currentUser + '_' + id + ' ul').append
                     (
-	                    '<li id="page_' + data[i].uid + '_' + data[i].id + '">' + 
-	                    '<span class="pageicon">&nbsp;</span>' + 
+	                    '<li id="page_' + data[i].uid + '_' + data[i].id + '">' +
+	                    '<span class="pageicon">&nbsp;</span>' +
 	                    '<a href="javascript:pages.openClose(' + data[i].id + ');">' +
 	                    data[i].name + '</a></li>'
                     );

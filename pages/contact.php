@@ -1,4 +1,4 @@
-<?php 
+<?php
 	$page = "contact";
 	global $currentPage;
 	$currentPage = -1;
@@ -8,6 +8,7 @@
 
 	$(document).ready(function()
 	{
+		$("#edit_menu").html('');
 	    pages.currentPage = -1;
 	    console.log("contact.php -> currentPage: " + pages.currentPage);
 	});
@@ -32,7 +33,7 @@
 			<div class="alert alert-success">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 				<?php echo "<p><strong>Your e-mail have been sent</strong></p>" ?>
-			</div> 
+			</div>
 		<?php
 	}
 ?>
