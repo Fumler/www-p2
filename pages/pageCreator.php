@@ -2,7 +2,7 @@
 	session_start();
 ?>
 
-<h1> Page Creator ni irasshaimase! </h1>
+<h1> Welcome to the Page Creator </h1>
 
 <form id="creationform" method="post">
 	Enter the name for the new webpage: <input type="text" name="name" id="name" value="">
@@ -12,13 +12,14 @@
 
 <script type="text/javascript" language="javascript">
 
-	$(document).ready(function() 
+	$(document).ready(function()
 	{
+		$("#edit_menu").html('');
 		console.log("pageCreator.php -> currentPage: " + pages.currentPage);
 		$('#creationform').submit(function(e)
 		{
 			e.preventDefault(); // avoid page refresh.
-			
+
 			var name = $('#name').val();
 
 			console.log(name);

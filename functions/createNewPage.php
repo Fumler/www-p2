@@ -14,15 +14,12 @@
 		$name = $_POST[ 'name' ];
 		$content = "<h1>" . $name . "</h1>";
 
-
-
-
 		$sql = 'INSERT INTO pages (parentid, uid, name, content) VALUES (?, ?, ?, ?)';
 		$sth = $db -> prepare( $sql );
 
 		$result = $sth -> execute( array ( $parentid, $uid, $name, $content ));
 
-		if( $result == 0) // An error occured, the page was not created. 
+		if( $result == 0 ) // An error occured, the page was not created. 
 		{
 			die( json_encode ( array ( 'error' => 'Error during database insertion' )));
 		}

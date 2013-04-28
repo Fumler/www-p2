@@ -1,6 +1,6 @@
 <h1>Profile</h1>
 
-<?php 
+<?php
 	session_start();
 	require_once('../functions/getUser.php');
 	$uid = $_GET['uid'];
@@ -11,13 +11,14 @@
 
 	$(document).ready(function()
 	{
+		$("#edit_menu").html('');
 	    pages.currentPage = -1;
 
 	    console.log("profile.php -> currentPage: " + pages.currentPage);
 	});
 </script>
 
-<form> 
+<form>
 	<label>Username</label>
 	<input type="text" id="newUname" value="<?php echo $userInfo['uname']; ?>" class="input-xlarge" disabled />
 	<label>First Name</label>
@@ -43,8 +44,8 @@
 
 <script type="text/javascript">
 	// AVERT THINE EYES
-	<!-- 
-	<?php 
+	<!--
+	<?php
 		echo "var uid = " . $uid;
 	?>
 	//-->
@@ -57,7 +58,7 @@
 		var url = 'functions/changeProfile.php';
 
 		// post start
-		$.post(url, {fname:newFname, lname:newLname, email:newEmail, uid:uid}, 
+		$.post(url, {fname:newFname, lname:newLname, email:newEmail, uid:uid},
 			function (data){
 				if (data == 'success') {
 					alert("Success!");
@@ -77,11 +78,11 @@
 		var url = 'functions/changePassword.php';
 
 		//post start
-		$.post(url, {oldPwd:oldPass, newPwd:newPass, newPwdR:newPassR, uid:uid}, 
+		$.post(url, {oldPwd:oldPass, newPwd:newPass, newPwdR:newPassR, uid:uid},
 			function (data) {
 				if (data == 'success') {
 					alert("Password changed!");
-					
+
 					resetPwdFields();
 				}
 				else if (data == 'noChange' || data == 'noMatch') {

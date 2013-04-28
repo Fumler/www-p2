@@ -8,7 +8,7 @@ session_start();
 require_once 'connect.php';
 
 // Fetches and returns all users who has registered pages
-if( isset($_POST[ 'find_users' ])) 
+if( isset($_POST[ 'find_users' ]))
 {
 	$sql = 'SELECT users.id, uname FROM users, pages where uname=users.id GROUP BY uname ORDER BY uname';
 	$sth = $db -> prepare( $sql );
@@ -29,7 +29,7 @@ if( isset($_POST[ 'for_user' ]))
 
 if( isset($_POST[ 'pageId' ]))
 {
-	$sql = 'SELECT content FROM pages WHERE id = ?';
+	$sql = 'SELECT content, uid FROM pages WHERE id = ?';
 	$sth = $db -> prepare ($sql);
 	$sth -> execute (array ($_POST[ 'pageId' ]));
 
@@ -37,7 +37,7 @@ if( isset($_POST[ 'pageId' ]))
 }
 
 // no user requested, or no user logged in.
-if( isset($_SESSION[ 'uid' ])) 
+if( isset($_SESSION[ 'uid' ]))
 {
 	// Return pages for the logged in user
 	$sql = 'SELECT name, id, uid FROM pages WHERE uid=? AND parentid=? ORDER BY name';

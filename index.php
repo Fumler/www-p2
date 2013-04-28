@@ -32,8 +32,12 @@ session_start();
         body { padding-top: 60px; padding-bottom: 40px; }
     </style>
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="css/flat-ui.css" rel="stylesheet">
+    <!-- <link href="css/flat-ui.css" rel="stylesheet"> -->
     <link href="css/custom.css" rel="stylesheet">
+
+    <style type="text/css" id="styles">
+        @import "css/flat-ui.css";
+    </style>
 
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -51,7 +55,7 @@ session_start();
 
     <!-- javascript
     ================================================== -->
-    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/application.js"></script>
     <script src="js/jquery-ui-1.10.0.custom.min.js"></script>
@@ -63,33 +67,30 @@ session_start();
     <script src="js/dropdown.js"></script>
     <script src="js/jquery.placeholder.js"></script>
     <script src="js/ajaxGet.js"></script>
+    <script src="js/jquery.address-1.5.js"></script>
 
     <script type="text/javascript">
     $(document).ready(function()
     {
-    //  pages.currentPage = -1;
-        console.log("Index.php -> currentPage: " + Pages.currentPage);
-    });
 
-    /*$("document").ready(function(){
+        function loadURL(url) {
+            console.log("loadURL: " + url);
+            $("#content").load(url);
+        }
+        $.address.init(function(event) {
+            console.log("init: " + $('[rel="address:' + event.value + '"]').attr('href'));
+            $.address.strict(false);
+        }).change(function(event) {
+            $("#content").load($('[rel="address:' + event.value + '"]').attr('href'));
+            console.log("change");
+        });
+        $.address.title("Fronter 2.0");
 
-    //     // function loadURL(url) {
-    //     //     console.log("loadURL: " + url);
-    //     //     $("#content").load(url);
-    //     // }
+        $('a').click(function(){
+            loadURL($(this).attr('href'));
+        });
 
-    //     // // $.address.init(function(event) {
-    //     // //     console.log("init: " + $('[rel=address:' + event.value + ']').attr('href'));
-    //     // // }).change(function(event) {
-    //     // //     $("#content").load($('[rel=address:' + event.value + ']').attr('href'));
-    //     // //     console.log("change");
-    //     // // })
-
-    //     // $('a').click(function(){
-    //     //     loadURL($(this).attr('href'));
-    //     // });
-
-        });*/
+        });
     </script>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
@@ -102,11 +103,11 @@ session_start();
                 <a class="brand" href="#">Fronter 2.0</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li><a href="#" onclick="ajaxGet('pages/home.php', 'content')">Home</a></li>
-                        <li><a href="#" onclick="ajaxGet('pages/about.php', 'content')">About</a></li>
-                        <li><a href="#" onclick="ajaxGet('pages/contact.php', 'content')">Contact</a></li>
-                        <li><a href="#" onclick="ajaxGet('pages/pageListing.php', 'content')">My Pages</a></li>
-                        <li><a href="#" onclick="ajaxGet('pages/pageCreator.php', 'content')">Create new page</a></li>
+                        <li><a href="pages/home.php" rel="address:/home">Home</a></li>
+                        <li><a href="pages/about.php" rel="address:/about">About</a></li>
+                        <li><a href="pages/contact.php" rel="address:/contact">Contact</a></li>
+                        <li><a href="pages/pageListing.php" rel="address:/pagelist">My Pages</a></li>
+                        <li><a href="pages/pageCreator.php" rel="address:/newpage">Create new page</a></li>
                     </ul>
 
                     <ul class="nav pull-right">
@@ -126,7 +127,9 @@ session_start();
         </div>
 
     </div>
+    <div id="edit_menu"></div>
     <div id="content" class="span9" >
+
         <script>
         $(document).ready (function () {
             //var div = document.getElementById('content');
@@ -146,7 +149,7 @@ session_start();
             type: "GET",
             url: 'functions/logout.php',
             async: true,
-            success: function (response) 
+            success: function (response)
                 {
                     // console.log(response);
                     //return response;
