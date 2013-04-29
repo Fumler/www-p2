@@ -87,9 +87,9 @@ Pages.prototype.openPage = function (id)
             	$("#settings").html('<li><a href="#" onclick="'+"ajaxGet('pages/settings.php', 'content')"+'">Settings</a></li>'); 
 
                 if(pages.currentUser == data[0][1]) {
-                    $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('p')" + ">Paragraph</a>");
-                    $("#edit_menu").append("<a href='derp'>derp</a>");
-                    $("#edit_menu").append("<a href='derp'>derp</a>");
+                    $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('p')" + ">Paragraph</a><br />");
+                    $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('yt')" + ">Youtube</a><br />");
+                    $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('ss')" + ">Slideshow</a><br />");
                     $("#edit_menu").append("<a href='derp'>derp</a>");
                 }
             }
@@ -101,7 +101,28 @@ Pages.prototype.insertWidget = function (type)
     if(type == "p") {
         $("#content").append("<p>Hello world!</p>");
     }
-
+    else if(type == "yt") {
+		$.ajax({
+			type: "GET",
+			url: 'widgets/ytFrame.php',
+			async: true,
+			success: function (response) {
+				// console.log(response);
+			    //return response;
+			    $("#content").append(response);
+			}
+		});
+    }
+    else if(type == "ss") {
+    	$.ajax({
+    		type: "GET",
+    		url: 'widgets/ssFrame.php',
+    		asynch: true,
+    		success: function (response) {
+    			$("#content").append(response);
+    		}
+    	});
+    }
 }
 
 
