@@ -84,6 +84,7 @@ session_start();
             $("#content").load($('[rel="address:' + event.value + '"]').attr('href'));
             $("li").removeClass("active");
             $('a[href="'+$('[rel="address:' + event.value + '"]').attr('href')+'"]').parent().addClass('active');
+            $.address.title(event.value.toUpperCase() + " - Fronter 2.0");
             console.log("change");
         });
         $.address.title("Fronter 2.0");
@@ -105,11 +106,11 @@ session_start();
                 <a class="brand" href="#">Fronter 2.0</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li><a href="pages/home.php" rel="address:/home">Home</a></li>
-                        <li><a href="pages/about.php" rel="address:/about">About</a></li>
-                        <li><a href="pages/contact.php" rel="address:/contact">Contact</a></li>
-                        <li><a href="pages/pageListing.php" rel="address:/pagelist">My Pages</a></li>
-                        <li><a href="pages/pageCreator.php" rel="address:/newpage">Create new page</a></li>
+                        <li><a href="pages/home.php" rel="address:home">Home</a></li>
+                        <li><a href="pages/about.php" rel="address:about">About</a></li>
+                        <li><a href="pages/contact.php" rel="address:contact">Contact</a></li>
+                        <li><a href="pages/pageListing.php" rel="address:pagelist">My Pages</a></li>
+                        <li><a href="pages/pageCreator.php" rel="address:newpage">Create new page</a></li>
                     </ul>
 
                     <ul class="nav pull-right">
