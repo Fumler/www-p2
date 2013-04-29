@@ -82,6 +82,8 @@ session_start();
             $.address.strict(false);
         }).change(function(event) {
             $("#content").load($('[rel="address:' + event.value + '"]').attr('href'));
+            $("li").removeClass("active");
+            $('a[href="'+$('[rel="address:' + event.value + '"]').attr('href')+'"]').parent().addClass('active');
             console.log("change");
         });
         $.address.title("Fronter 2.0");
