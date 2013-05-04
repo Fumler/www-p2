@@ -1,6 +1,6 @@
 <div id="ssFrameDiv" style="border-style: solid; display: inline-block;">
     <a href="#ssEditModal" role="button" data-toggle="modal" style="float: left;"><i class="icon-edit"></i></a>
-    <a href="#ssDeleteModal" role="button" data-toggle="modal" style="float: right;"><i class="icon-trash"></i></a><br />	
+    <a href="#ssDeleteModal" role="button" data-toggle="modal" style="float: right;"><i class="icon-trash"></i></a><br />
     <iframe id="ssFrameID" width="640" height="480" frameborder="0" />
 </div>
 
@@ -14,7 +14,7 @@
 		<!-- The following radiogroup dictates what divs will be shown and what slideshow to insert -->
         <div id="radioGroup">
 			flickr  <input type="radio" name="ssType" checked="checked" value="1" >
-            test  <input type="radio" name="ssType" value="2" > 
+            test  <input type="radio" name="ssType" value="2" >
             <br /><br />
         </div>
         <!-- START Flickr div -->
@@ -78,7 +78,7 @@
 
 	// Changes which div to display based on radio buttons
 	$(document).ready(function() {
-		$("input[name$='ssType']").click(function() {
+		$("input[name$='ssType']").click(function(){
 			var value = $(this).val();
 
 			$("div.desc1").hide();
