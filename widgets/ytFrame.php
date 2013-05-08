@@ -52,4 +52,14 @@
         div.parentNode.removeChild(div);
     }
 
+    // Remove border
+    function removeBorder() {
+        document.getElementById('ytFrameDiv').style = "";
+    }
+
+    // Add border
+    function addBorder() {
+        document.getElementById('ytFrameDiv').style = "border-style: solid; display: inline-block;";
+    }
+
 </script>

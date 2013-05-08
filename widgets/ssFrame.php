@@ -119,4 +119,14 @@
 		div.parentNode.removeChild(div);
 	}
 
+	// Remove border
+	function removeBorder() {
+		document.getElementById('ssFrameDiv').style = "";
+	}
+
+	// Add border
+	function addBorder() {
+		document.getElementById('ssFrameDiv').style = "border-style: solid; display: inline-block;";
+	}
+
 </script>
