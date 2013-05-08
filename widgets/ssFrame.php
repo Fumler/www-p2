@@ -1,7 +1,12 @@
 <div id="ssFrameDiv" style="border-style: solid; display: inline-block;">
-    <a href="#ssEditModal" role="button" data-toggle="modal" style="float: left;"><i class="icon-edit"></i></a>
-    <a href="#ssDeleteModal" role="button" data-toggle="modal" style="float: right;"><i class="icon-trash"></i></a><br />
+    <a id="ssEditIcon" href="#ssEditModal" role="button" data-toggle="modal" style="float: left;"><i class="icon-edit"></i></a>
+    <a id="ssDeleteIcon" href="#ssDeleteModal" role="button" data-toggle="modal" style="float: right;"><i class="icon-trash"></i></a><br />
     <iframe id="ssFrameID" width="640" height="480" frameborder="0" />
+</div>
+
+<div id="ssTestButtons">
+	<button type="button" class="btn btn-primary" onclick="removeBorder();">Remove border</button>
+	<button type="button" class="btn btn-primary" onclick="addBorder();">Add border</button>
 </div>
 
 <!-- Edit modal -->
@@ -11,12 +16,6 @@
 		<h3 id="ssEditModalLabel">Edit frame</h3>
 	</div>
 	<div class="modal-body">
-		<!-- The following radiogroup dictates what divs will be shown and what slideshow to insert -->
-        <div id="radioGroup">
-			flickr  <input type="radio" name="ssType" checked="checked" value="1" >
-            test  <input type="radio" name="ssType" value="2" >
-            <br /><br />
-        </div>
         <!-- START Flickr div -->
         <div id="ss1" class="desc1">
 			<form id="editForm">
@@ -45,13 +44,6 @@
 			</div>
 		</div>
 		<!-- END Flickr Div -->
-		<!-- Other div -->
-        <div id="ss2" class="desc1" style="display: none;">
-			<form id="editForm">
-				<label>derp to derp</label>
-				<input id="contentInput" type="text" placeholder="URL" autofocus >
-			</form>
-		</div>
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -75,23 +67,6 @@
 </div>
 
 <script type="text/javascript">
-
-	// Changes which div to display based on radio buttons
-	$(document).ready(function() {
-		$("input[name$='ssType']").click(function(){
-			var value = $(this).val();
-
-			$("div.desc1").hide();
-			$("#ss" + value).show();
-		});
-
-		$("input[name$='flickr']").click(function() {
-			var value = $(this).val();
-
-			$("div.desc2").hide();
-			$("#flickr" + value).show();
-		});
-	});
 
 	// Saves the input-content to the iframe
 	function saveFlickr() {
@@ -117,16 +92,23 @@
 	function deleteDiv() {
 		var div = document.getElementById('ssFrameDiv');
 		div.parentNode.removeChild(div);
+
+		var testDiv = document.getElementById('ssTestButtons');
+		testDiv.parentNode.removeChild(testDiv);
 	}
 
-	// Remove border
+	// Removes border and buttons
 	function removeBorder() {
-		document.getElementById('ssFrameDiv').style = "";
+		document.getElementById('ssFrameDiv').style.borderStyle = "none";
+		$("#ssEditIcon").hide();
+		$("#ssDeleteIcon").hide();
 	}
 
-	// Add border
+	// Adds border and buttons
 	function addBorder() {
-		document.getElementById('ssFrameDiv').style = "border-style: solid; display: inline-block;";
+		document.getElementById('ssFrameDiv').style.borderStyle = "solid";
+		$("#ssEditIcon").show();
+		$("#ssDeleteIcon").show();
 	}
 
 </script>
