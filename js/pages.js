@@ -84,16 +84,33 @@ Pages.prototype.openPage = function (id)
             {
             	//$("#content").html(data);
             	$("#content").html(data[0][0]);
-            	$("#settings").html('<li><a href="#" onclick="'+"ajaxGet('pages/settings.php', 'content')"+'">Settings</a></li>'); 
+            	$("#settings").html('<li><a href="#" onclick="'+"ajaxGet('pages/settings.php', 'content')"+'">Settings</a></li>');
 
                 if(pages.currentUser == data[0][1]) {
                     $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('p')" + ">Paragraph</a><br />");
                     $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('yt')" + ">Youtube</a><br />");
                     $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('ss')" + ">Slideshow</a><br />");
-                    $("#edit_menu").append("<a href='derp'>derp</a>");
+                    $("#edit_menu").append("<a href='#' onclick="+ "pages.savePage()"+">Save Page</a>");
                 }
             }
         });
+}
+
+Pages.prototype.savePage = function ()
+{
+    var content = $("#content").html();
+    var contentPageId = this.currentPage;
+
+    $.post("functions/updatePage.php", {'updateContent': content, 'contentPageId': contentPageId}, function(data){ alert(data)});
+
+    // $.ajax ({
+    //     url: 'functions/updatePage.php',
+    //     data: {'updateContent': content},
+    //     type: 'post',
+    //     success: function () {
+    //         console.log("UPDATED PAGE IN DB");
+    //     }
+    // });
 }
 
 Pages.prototype.insertWidget = function (type)
