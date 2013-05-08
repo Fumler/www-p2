@@ -5,10 +5,10 @@
 	session_start();
 	require_once 'connect.php';
 
-	if( isset ($_SESSION[ 'uid' ])) // if user is logged in, else kill the session. 
+	if( isset ($_SESSION[ 'uid' ])) // if user is logged in, else kill the session.
 	{
 		// Create a new page with the new name, parentID, user ID and content consisting of the
-		// title of the page. 
+		// title of the page.
 		$parentid = $_POST[ 'parentID' ];
 		$uid = $_SESSION[ 'uid' ];
 		$name = $_POST[ 'name' ];
@@ -19,17 +19,18 @@
 
 		$result = $sth -> execute( array ( $parentid, $uid, $name, $content ));
 
-		if( $result == 0 ) // An error occured, the page was not created. 
+		if( $result == 0 ) // An error occured, the page was not created.
 		{
 			die( json_encode ( array ( 'error' => 'Error during database insertion' )));
 		}
 
+		$_SESSION['pageId'] = $db->lastInsertId();
 
-		// Retrieve the new page. 
-		$sql = 'SELECT id, content FROM pages WHERE uid=? AND parentid=? AND name=?';
+		// Retrieve the new page.
+		$sql = 'SELECT id, content FROM pages WHERE uid=? AND parentid=? AND name=? AND id=?';
 		$sth = $db -> prepare( $sql );
 
-		$sth -> execute (array ( $uid, $parentid, $name ));
+		$sth -> execute (array ( $uid, $parentid, $name, $_SESSION ));
 
 		// $result = array();
 		// while($row = $sth -> fetch( PDO::FETCH_ASSOC ))
@@ -41,4 +42,4 @@
 	}
 
 	die (json_encode (array ('error' => 'No user is logged in')));
-?>
+?>d
