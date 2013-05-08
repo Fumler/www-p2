@@ -90,7 +90,7 @@
 
 			$("div.desc2").hide();
 			$("#flickr" + value).show();
-		})
+		});
 	});
 
 	// Saves the input-content to the iframe
