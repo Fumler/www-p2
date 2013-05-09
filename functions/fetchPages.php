@@ -29,7 +29,7 @@ if( isset($_POST[ 'for_user' ]))
 
 if( isset($_POST[ 'pageId' ]))
 {
-	$sql = 'SELECT content, uid FROM pages WHERE id = ?';
+	$sql = 'SELECT content, uid, privacy FROM pages WHERE id = ?';
 	$sth = $db -> prepare ($sql);
 	$sth -> execute (array ($_POST[ 'pageId' ]));
 
