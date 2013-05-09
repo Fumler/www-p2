@@ -47,8 +47,7 @@ Widget.prototype.ytPopulate = function(type, id) {
 	this.frameDiv.style.display		= 'inline-block';
 
 	// Set up anchor-icons
-	this.createIcon(type, id, 0);
-	this.createIcon(type, id, 1);
+	this.createIcon(type, id);
 
 	// Youtube specific iframe
 	this.iFrameID = type + "FrameID" + id;
@@ -80,50 +79,27 @@ Widget.prototype.ssPopulate = function(type, id) {
 	console.log(this.frameDiv.id);
 }
 
-Widget.prototype.createIcon = function(type, id, icon) {
+Widget.prototype.createIcon = function(type, id) {
 	// create the icon and append it to the above anchor
 	// Edit icon
-	if (icon == 0) {
-		this.editIconA.setAttribute('role', "button");
-		this.editIconA.setAttribute('data-toggle', "modal");
+	this.editIconA.setAttribute('role', "button");
+	this.editIconA.setAttribute('data-toggle', "modal");
 
-		this.editIconId = type + "EditIcon" + id;
-		this.editIconA.id = this.editIconId;
+	this.editIconId = type + "EditIcon" + id;
+	this.editIconA.id = this.editIconId;
 
-		this.editIconA.style.float = 'left';
+	this.editIconA.style.float = 'left';
 
-		this.editModalId = type + "EditModal" + id;
-		this.editIconA.href = "#" + this.editModalId;
+	this.editModalId = type + "EditModal" + id;
+	this.editIconA.href = "#" + this.editModalId;
 
-		// Set the correct class
-		this.editIcon.className = 'icon-edit';
+	// Set the correct class
+	this.editIcon.className = 'icon-edit';
 
-		// Append the elements correctly
-		this.editIconA.appendChild(this.editIcon);
+	// Append the elements correctly
+	this.editIconA.appendChild(this.editIcon);
 
-		this.frameDiv.appendChild(this.editIconA);
-	}
-	// Delete icon
-	else if (icon > 0) {
-		this.deleteIconA.setAttribute('role', "button");
-		this.deleteIconA.setAttribute('data-toggle', "modal");
-
-		this.deleteIconId = type + "DeleteIcon" + id;
-		this.deleteIconA.id = this.deleteIconId;
-
-		this.deleteIconA.style.float = 'right';
-
-		this.deleteModalId = type + "DeleteModal" + id;
-		this.deleteIconA.href = "#" + this.deleteModalId;
-
-		// Set the correct clas
-		this.deleteIcon.className = 'icon-trash';
-
-		// Append the elements correctly
-		this.deleteIconA.appendChild(this.deleteIcon);
-
-		this.frameDiv.appendChild(this.deleteIconA);
-	}
+	this.frameDiv.appendChild(this.editIconA);
 }
 
 
@@ -133,7 +109,7 @@ Widget.prototype.createYtEditModal = function(type, id) {
 	this.editModal.setAttribute('class', 'modal hide fade');
 	this.editModal.setAttribute('tabindex', '-1');
 	this.editModal.setAttribute('role', 'dialog');
-	this.editModalLabel = type + "EditModalLabel";
+	this.editModalLabel = type + "EditModalLabel" + id;
 	this.editModal.setAttribute('aria-labelledby', this.editModalLabel);
 	this.editModal.setAttribute('aria-hidden', 'true');
 
@@ -215,4 +191,5 @@ Widget.prototype.createYtEditModal = function(type, id) {
 
 	// Append footer to main modal div
 	this.editModal.appendChild(this.editModalFooter);
+	//###END FOOTER DIV###//
 }
