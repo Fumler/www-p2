@@ -62,8 +62,9 @@ Widget.prototype.populateModal = function(type, id) {
 	}
 	else if (type == "ss") {
 		// flickr slideshow specific frame
-		this.iFrame.width = '640';
-		this.iFrame.height = '480';
+		this.iFrame.src = "img/default-image.png";	// temp image
+		this.iFrame.width = '500';
+		this.iFrame.height = '500';
 		this.iFrame.setAttribute('frameborder', '0');
 	}
 

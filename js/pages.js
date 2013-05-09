@@ -7,7 +7,6 @@ function Pages ()
 	this.pageSelected = null;
 	this.currentUser = -1;
 	this.currentWidget = 0;
-	this.widgetArray = new Array();
 }
 
 var pages = new Pages ();
@@ -161,33 +160,7 @@ Pages.prototype.savePage = function ()
 
 Pages.prototype.insertWidget = function (type)
 {
-    /*if(type == "p") {
-        $("#content").append('<p>Click to edit</p>');
-    }
-    else if(type == "yt") {
-		$.ajax({
-			type: "GET",
-			url: 'widgets/ytFrame.php',
-			async: true,
-			success: function (response) {
-				// console.log(response);
-			    //return response;
-			    $("#content").append(response);
-			}
-		});
-    }
-    else if(type == "ss") {
-    	$.ajax({
-    		type: "GET",
-    		url: 'widgets/ssFrame.php',
-    		asynch: true,
-    		success: function (response) {
-    			$("#content").append(response);
-    		}
-    	});
-    }*/
-
-    this.widgetArray[this.currentWidget] = new Widget(type, this.currentWidget);
+    widget = new Widget(type, this.currentWidget);
 
     this.currentWidget ++;
 }
