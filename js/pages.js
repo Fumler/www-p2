@@ -32,7 +32,7 @@ Pages.prototype.init = function ()
 	            	'<li id="page_' + this.currentUser + '_' + data[i].id + '">' +
 	                '<span class="pageicon">&nbsp;</span>' +
 	                '<a href="javascript:pages.openPage(' + data[i].id + ');">' +
-	                data[i].name + '</a></li>'
+	                data[i].name + '</a> - <a href="javascript:pages.deletePage(' + data[i].id + ');">Delete this page</a></li>'
 	            );
 
 	            console.log("Id: page_" + this.currentUser + '_' + data[i].id);
@@ -42,6 +42,18 @@ Pages.prototype.init = function ()
 		}
 	});
 }
+
+Pages.prototype.deletePage = function(pageId) {
+    if(pageId == null) {
+        pageIdId = this.currentPage;
+
+        $.post("functions/deletePage.php", {'page_id': pageIdId}, function(data){ pages.init();});
+
+
+    } else {
+        $.post("functions/deletePage.php", {'page_id': pageId}, function(data){ pages.init();});
+    }
+};
 
 Pages.prototype.createNewPage = function (name, parentID)
 {
