@@ -34,6 +34,7 @@ session_start();
     <link href="css/bootstrap-responsive.css" rel="stylesheet">
     <!-- <link href="css/flat-ui.css" rel="stylesheet"> -->
     <link href="css/custom.css" rel="stylesheet">
+    <link href="https://raw.github.com/jhollingworth/bootstrap-wysihtml5/master/src/bootstrap-wysihtml5.css" rel="stylesheet">
 
     <style type="text/css" id="styles">
         @import "css/flat-ui.css";
@@ -70,8 +71,11 @@ session_start();
     <script src="js/jquery.address-1.5.js"></script>
 
     <script type="text/javascript">
+    var editMode = false;
     $(document).ready(function()
     {
+
+        // deep links
 
         function loadURL(url) {
             console.log("loadURL: " + url);
@@ -92,6 +96,9 @@ session_start();
         $('a').click(function(){
             loadURL($(this).attr('href'));
         });
+
+
+
 
         });
     </script>
