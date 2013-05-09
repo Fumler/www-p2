@@ -6,7 +6,7 @@ function Pages ()
 	this.currentPage = -1; // Currently selected page, root by default.
 	this.pageSelected = null;
 	this.currentUser = -1;
-	this.currentWidget = 1;
+	this.currentWidget = 0;
 	this.widgetArray = new Array();
 }
 
@@ -119,6 +119,27 @@ Pages.prototype.editPage = function ()
             editMode = true;
             break;
     }
+
+    pages.toggleEditIcons();
+}
+
+Pages.prototype.toggleEditIcons = function () 
+{
+	var iconId = "editIcon";
+
+	// Toggle edit icons
+	var i = 0;
+	while ($("#" + iconId + i).length > 0) {
+		switch (editMode) {
+			case true:
+				$("#" + iconId + i).show();
+				break;
+			case false:
+				$("#" + iconId + i).hide();
+				break;
+		}
+		i++;
+	}
 }
 
 Pages.prototype.savePage = function ()

@@ -17,31 +17,29 @@
 	</div>
 	<div class="modal-body">
         <!-- START Flickr div -->
-        <div id="ss1" class="desc1">
-			<form id="editForm">
-				<label>User ID</label>
-				<input id="fUserID" type="text" placeholder="USER_ID" >
+		<form id="editForm">
+			<label>User ID</label>
+			<input id="fUserID" type="text" placeholder="USER_ID" >
+		</form>
+		<!-- More radiobuttons -->
+		<div id="IDradioGroup">
+			by tag  <input type="radio" name="flickr" id="fr1" checked="checked" value="1">
+			by set  <input type="radio" name="flickr" id="fr2" value="2">
+			<br /><br />
+		</div>
+		<!-- TAG_ID div -->
+		<div id="flickr1" class="desc2">
+			<form id="flickrForm1">
+				<label>Tag ID</label>
+				<input id="fTagID" type="text" placeholder="TAG_ID">
 			</form>
-			<!-- More radiobuttons -->
-			<div id="IDradioGroup">
-				by tag  <input type="radio" name="flickr" id="fr1" checked="checked" value="1">
-				by set  <input type="radio" name="flickr" id="fr2" value="2">
-				<br /><br />
-			</div>
-			<!-- TAG_ID div -->
-			<div id="flickr1" class="desc2">
-				<form id="flickrForm1">
-					<label>Tag ID</label>
-					<input id="fTagID" type="text" placeholder="TAG_ID">
-				</form>
-			</div>
-			<!-- SET_ID div -->
-			<div id="flickr2" class="desc2" style="display: none;">
-				<form id="flickrForm2">
-					<label>Set ID</label>
-					<input id="fSetID" type="text" placeholder="SET_ID">
-				</form>
-			</div>
+		</div>
+		<!-- SET_ID div -->
+		<div id="flickr2" class="desc2" style="display: none;">
+			<form id="flickrForm2">
+				<label>Set ID</label>
+				<input id="fSetID" type="text" placeholder="SET_ID">
+			</form>
 		</div>
 		<!-- END Flickr Div -->
 	</div>
