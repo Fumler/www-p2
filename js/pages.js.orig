@@ -89,10 +89,17 @@ Pages.prototype.openPage = function (id)
             	$("#settings").html('<li><a href="#" onclick="'+"ajaxGet('pages/settings.php', 'content')"+'">Settings</a></li>');
 
                 if(pages.currentUser == data[0][1]) {
+<<<<<<< HEAD
                     $("#edit_menu").append("<a id='pW' href='#' onclick=" + "pages.insertWidget('p')" + ">Paragraph</a><br />");
                     $("#edit_menu").append("<a id='ytW' href='#' onclick=" + "pages.insertWidget('yt');" + ">Youtube</a><br />");
                     $("#edit_menu").append("<a id='ssW' href='#' onclick=" + "pages.insertWidget('ss');" + ">Slideshow</a><br />");
+                    $("#edit_menu").append("<a href='derp'>derp</a>");
+=======
+                    $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('p')" + ">Paragraph</a><br />");
+                    $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('yt')" + ">Youtube</a><br />");
+                    $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('ss')" + ">Slideshow</a><br />");
                     $("#edit_menu").append("<a href='#' onclick="+ "pages.savePage()"+">Save Page</a>");
+>>>>>>> 825cb73b64247bd6f0ab46b2b1d16307d0d90148
                 }
             }
         });
