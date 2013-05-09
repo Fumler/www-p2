@@ -76,6 +76,7 @@ session_start();
     $(document).ready(function()
     {
 
+
         // deep links
 
         function loadURL(url) {

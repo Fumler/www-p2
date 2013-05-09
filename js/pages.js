@@ -8,12 +8,14 @@ function Pages ()
 	this.currentUser = -1;
 	this.currentWidget = 1;
 	this.widgetArray = new Array();
+
 }
 
 var pages = new Pages ();
 
 Pages.prototype.init = function ()
 {
+
 	$.ajax({
 		url: 'functions/fetchPages.php',
 		data: {'id': -1},
@@ -75,6 +77,7 @@ Pages.prototype.createNewPage = function (name, parentID)
 
 Pages.prototype.openPage = function (id)
 {
+
 	this.pageSelected (id);
 	this.currentPage = id;
 
@@ -91,15 +94,63 @@ Pages.prototype.openPage = function (id)
             	$("#settings").html('<li><a href="#" onclick="'+"ajaxGet('pages/settings.php', 'content')"+'">Settings</a></li>');
 
                 if(pages.currentUser == data[0][1]) {
-                    $("#edit_menu").append(button);
-                    $("#edit_menu").append("<a id='pW' href='#' onclick=" + "pages.insertWidget('p')" + ">Paragraph</a><br />");
-                    $("#edit_menu").append("<a id='ytW' href='#' onclick=" + "pages.insertWidget('yt');" + ">Youtube</a><br />");
-                    $("#edit_menu").append("<a id='ssW' href='#' onclick=" + "pages.insertWidget('ss');" + ">Slideshow</a><br />");
-                    $("#edit_menu").append("<a href='#' onclick="+ "pages.savePage()"+">Save Page</a>");
+                    $("#edit_menu").append('<div id="editor"></div>');
+                    pages.addToolbar("#edit_menu");
+                    pages.addEditButtons("#editor");
+                    $("#editor").hide();
                 }
             }
         });
 }
+
+Pages.prototype.addToolbar = function(div) {
+    // add the edit page toggle
+    $(div).append(button);
+
+    $(div).append("<a id='pW' href='#' onclick=" + "pages.insertWidget('p')" + ">Paragraph</a><br />");
+    $(div).append("<a id='ytW' href='#' onclick=" + "pages.insertWidget('yt');" + ">Youtube</a><br />");
+    $(div).append("<a id='ssW' href='#' onclick=" + "pages.insertWidget('ss');" + ">Slideshow</a><br />");
+    $(div).append("<a href='#' onclick="+ "pages.savePage()"+">Save Page</a>");
+
+
+    var editor = $("#editor");
+
+    // add the text editor buttons
+
+
+
+
+};
+
+Pages.prototype.addEditButtons = function(div) {
+        var bold = $('<button class="btn btn-primary" data-original-title="Bold - Ctrl+B"><strong>B</strong></button>');
+        var italic = $('<button class="btn btn-primary" data-original-title="Italic - Ctrl+I"><i>I</i></button>');
+        var hone = $('<button class="btn btn-primary" data-original-title="H1">H1</button>');
+        var htwo = $('<button class="btn btn-primary" data-original-title="H2">H2</button>');
+        var hthree = $('<button class="btn btn-primary" data-original-title="H3">H3</button>');
+        var para = $('<button class="btn btn-primary" data-original-title="P">P</button>');
+
+        $(div).append('<div class="btn-toolbar"></div>');
+        $(div + " .btn-toolbar").append('<div class="btn-grp"></div>');
+        bold.click(function() { document.execCommand("bold", false, null);});
+        $(div + " .btn-toolbar .btn-grp").append(bold);
+
+        italic.click(function() { document.execCommand("italic", false, null);});
+        $(div + " .btn-toolbar .btn-grp").append(italic);
+
+        hone.click(function() { document.execCommand("formatBlock", false, "<H1>");});
+        $(div + " .btn-toolbar .btn-grp").append(hone);
+
+        htwo.click(function() { document.execCommand("formatBlock", false, "<H2>");});
+        $(div + " .btn-toolbar .btn-grp").append(htwo);
+
+        hthree.click(function() { document.execCommand("formatBlock", false, "<H3>");});
+        $(div + " .btn-toolbar .btn-grp").append(hthree);
+
+        para.click(function() { document.execCommand("formatBlock", false, "<P>");});
+        $(div + " .btn-toolbar .btn-grp").append(para);
+
+};
 
 Pages.prototype.editPage = function ()
 {
@@ -111,11 +162,13 @@ Pages.prototype.editPage = function ()
         case true:
             console.log("Edit is now true");
             $("#content").get(0).contentEditable = false;
+            $("#editor").hide();
             editMode = false;
             break;
         case false:
             console.log("Edit is now false");
             $("#content").get(0).contentEditable = true;
+            $("#editor").show();
             editMode = true;
             break;
     }
