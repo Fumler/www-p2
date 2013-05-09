@@ -242,7 +242,7 @@ Widget.prototype.createEditModal = function(type, id) {
 		//--
 		// Div
 		this.editModalBodyFlickrOne = document.createElement('div');
-		this.editModalBodyFlickrOneId = this.editModalRadioName + "-" + "1";
+		this.editModalBodyFlickrOneId = this.editModalRadioName + "1";
 		this.editModalBodyFlickrOne.id = this.editModalBodyFlickrOneId;
 		this.editModalBodyFlickrOne.setAttribute('class', 'desc2');
 
@@ -274,7 +274,7 @@ Widget.prototype.createEditModal = function(type, id) {
 		//---
 		// Div
 		this.editModalBodyFlickrTwo = document.createElement('div');
-		this.editModalBodyFlickrTwoId = this.editModalRadioName + "-" + "2";
+		this.editModalBodyFlickrTwoId = this.editModalRadioName + "2";
 		this.editModalBodyFlickrTwo.id = this.editModalBodyFlickrTwoId;
 		this.editModalBodyFlickrTwo.setAttribute('class', 'desc2');
 		this.editModalBodyFlickrTwo.style.display = "none";
@@ -355,10 +355,10 @@ Widget.prototype.appendFunctions = function(type, id) {
 	else if (type == "ss") {
 		this.script.innerHTML += "var userID = $('#" + this.editModalFormInputId + "').val();";
 		this.script.innerHTML += "if ($('#" + this.editModalRadioOneId + "').is(':checked')) {";
-			this.script.innerHTML += "var tagID = $('#" + this.editModalBodyFlickrOneInput + "').val();";
+			this.script.innerHTML += "var tagID = $('#" + this.editModalBodyFlickrOneInputId + "').val();";
 			this.script.innerHTML += "document.getElementById('" + this.iFrameID + "').src = 'http://www.flickr.com/slideShow/index.gne?user_id=' + userID + '&tag_id=' + tagID;}"
 		this.script.innerHTML += "else if ($('#" + this.editModalRadioTwoId + "').is(':checked')) {";
-			this.script.innerHTML += "var setID = $('#" + this.editModalBodyFlickrTwoInput + "').val();";
+			this.script.innerHTML += "var setID = $('#" + this.editModalBodyFlickrTwoInputiD + "').val();";
 			this.script.innerHTML += "document.getElementById('" + this.iFrameID + "').src = 'http://www.flickr.com/slideShow/index.gne?user_id=' + userID + '&photoset_id=' + setID;}";
 
 		// Resize iframe
@@ -370,7 +370,7 @@ Widget.prototype.appendFunctions = function(type, id) {
 			this.script.innerHTML += "$('input[name$=" + '"' + this.editModalRadioName + '"' + "]').click(function() {";
 				this.script.innerHTML += "var value = $(this).val();";
 				this.script.innerHTML += "$('div.desc2').hide();";
-				this.script.innerHTML += "$('#" + this.editModalRadioName + "-' + value).show();";
+				this.script.innerHTML += "$('#" + this.editModalRadioName + "' + value).show();";
 			this.script.innerHTML += "});";
 		this.script.innerHTML += "});";
 	}
