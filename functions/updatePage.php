@@ -14,7 +14,7 @@ if(!empty($_POST['privacy'])) {
 	$sql = 'UPDATE pages SET privacy=? WHERE id=?';
     $sth = $db->prepare($sql);
     $sth->execute(array($_POST['privacy'], $_POST['contentPageId']));
-	die("success");
+	die("Privacy settings saved!");
 }
 die("failure");
 
