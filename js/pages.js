@@ -162,6 +162,8 @@ Pages.prototype.insertWidget = function (type)
 {
     widget = new Widget(type, this.currentWidget);
 
+    pages.toggleEditIcons();
+
     this.currentWidget ++;
 }
 
