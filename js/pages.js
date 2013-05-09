@@ -102,16 +102,41 @@ Pages.prototype.openPage = function (id)
             {
             	//$("#content").html(data);
             	$("#content").html(data[0][0]);
-            	$("#settings").html('<li><a href="#" onclick="'+"ajaxGet('pages/settings.php', 'content')"+'">Settings</a></li>');
 
                 if(pages.currentUser == data[0][1]) {
                     pages.addToolbar("#edit_menu");
+                    pages.addSettingsModal("#edit_menu");
                     $("#edit_menu").append('<div id="editor"></div>');
                     pages.addEditButtons("#editor");
                     $("#editor").hide();
+
+                    pages.setPrivacyRadio(data[0][2]);
                 }
             }
         });
+}
+
+Pages.prototype.setPrivacyRadio = function(privacy) {
+    // Sets the radio buttons in the settings modal correctly
+    if (privacy == 0) {
+        document.getElementById('p1').checked = false;
+        document.getElementById('p2').checked = true;
+    }
+    else if (privacy == 1) {
+        document.getElementById('p1').checked = true;
+        document.getElementById('p2').checked = false;
+    }
+}
+
+Pages.prototype.savePrivacy = function() {
+    // Only get one of the radio buttons since they are mutually exclusive
+    var contentPageId = this.currentPage;
+    var privacy = 0;
+
+    if (document.getElementById('p1').checked)
+        privacy = 1;
+
+    $.post("functions/updatePage.php", {'privacy': privacy, 'contentPageId': contentPageId}, function(data){ alert(data)});
 }
 
 Pages.prototype.addToolbar = function(div) {
@@ -119,6 +144,7 @@ Pages.prototype.addToolbar = function(div) {
     $(div).append("</br>");
     $(div).append(button);
     $(div).append("  <a class='btn btn-success' href='#' onclick="+ "pages.savePage()"+">Save Page </a>");
+    $(div).append("  <a class='btn btn-primary' id='settingsBtn' href='#settingsModal' role='button' data-toggle='modal'>Settings </a> ");
     $(div).append("</br></br>");
     $(div).append("<h3>Add widgets</h3>");
     $(div).append("  <a class='btn btn-primary' id='ytW' href='#' onclick=" + "pages.insertWidget('yt');" + ">Youtube </a>");
@@ -127,9 +153,27 @@ Pages.prototype.addToolbar = function(div) {
     var clean = $('  <button class="btn btn-primary" href="#">Clear</button>');
     clean.click(function() { $("#content").empty();});
     $(div).append(clean);
-
-
 };
+
+Pages.prototype.addSettingsModal = function(div) {
+	$(div).append('<div id="settingsModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">'
+                        + '<div class="modal-header">'
+                            + '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>'
+                            + '<h3 id="settingsModalLabel">Page Settings</h3>'
+                        + '</div>'
+                        + '<div class="modal-body">'
+                            + '<div id="radioGroup">'
+                                + '<label>Privacy settings</label>'
+                                + 'Public    <input type="radio" name="privacy" id="p1">'
+                                + 'Private   <input type="radio" name="privacy" id="p2">'
+                            + '</div>'
+                        + '</div>'
+                        + '<div class="modal-footer">'
+                            + '<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>'
+                            + '<button class="btn btn-primary" data-dismiss="modal" onclick="pages.savePrivacy();">Save Changes</button>'
+                        + '</div>'
+                    + '</div>');
+}
 
 Pages.prototype.addEditButtons = function(div) {
         var bold = $('<button class="btn " data-original-title="Bold - Ctrl+B"><strong>B</strong></button>');
