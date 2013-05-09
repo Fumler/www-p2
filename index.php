@@ -70,7 +70,36 @@ session_start();
     <script src="js/jquery.placeholder.js"></script>
     <script src="js/ajaxGet.js"></script>
     <script src="js/jquery.address-1.5.js"></script>
+    <script>
+        $(document).ready (function () {
+            //var div = document.getElementById('content');
+            ajaxGet("pages/home.php", "content");
+        });
 
+    </script>
+    <script type="text/javascript">
+        function fixModal(classId) {
+            $("."+classId +" .modal").appendTo($("body"));
+        }
+
+        function logout(){
+            $.ajax({
+            type: "GET",
+            url: 'functions/logout.php',
+            async: true,
+            success: function (response)
+                {
+                    // console.log(response);
+                    //return response;
+                    if(response == "logged out")
+                    {
+                        ajaxGet('functions/login.php', 'login');
+                        ajaxGet("pages/home.php", "content");
+                    }
+                }
+            });
+        }
+    </script>
     <script type="text/javascript">
     var editMode = false;
     $(document).ready(function()
@@ -139,41 +168,19 @@ session_start();
         </div>
 
     </div>
-    <div id="edit_menu"></div>
-    <div id="content" class="span9" >
 
-        <script>
-        $(document).ready (function () {
-            //var div = document.getElementById('content');
-            ajaxGet("pages/home.php", "content");
-        });
-
-        </script>
+    <div class="row">
+        <div class="span9">
+            <div id="edit_menu" class="span9"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span9">
+            <div id="content" class="span9"></div>
+        </div>
     </div>
 
-    <script type="text/javascript">
-        function fixModal(classId) {
-            $("."+classId +" .modal").appendTo($("body"));
-        }
 
-        function logout(){
-            $.ajax({
-            type: "GET",
-            url: 'functions/logout.php',
-            async: true,
-            success: function (response)
-                {
-                    // console.log(response);
-                    //return response;
-                    if(response == "logged out")
-                    {
-                        ajaxGet('functions/login.php', 'login');
-                        ajaxGet("pages/home.php", "content");
-                    }
-                }
-            });
-        }
-    </script>
 
 </body>
 </html>

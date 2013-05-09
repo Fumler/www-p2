@@ -93,8 +93,8 @@ Pages.prototype.openPage = function (id)
             	$("#settings").html('<li><a href="#" onclick="'+"ajaxGet('pages/settings.php', 'content')"+'">Settings</a></li>');
 
                 if(pages.currentUser == data[0][1]) {
-                    $("#edit_menu").append('<div id="editor"></div>');
                     pages.addToolbar("#edit_menu");
+                    $("#edit_menu").append('<div id="editor"></div>');
                     pages.addEditButtons("#editor");
                     $("#editor").hide();
                 }
@@ -104,30 +104,24 @@ Pages.prototype.openPage = function (id)
 
 Pages.prototype.addToolbar = function(div) {
     // add the edit page toggle
+    $(div).append("</br>");
     $(div).append(button);
-
-    $(div).append("<a id='pW' href='#' onclick=" + "pages.insertWidget('p')" + ">Paragraph</a><br />");
-    $(div).append("<a id='ytW' href='#' onclick=" + "pages.insertWidget('yt');" + ">Youtube</a><br />");
-    $(div).append("<a id='ssW' href='#' onclick=" + "pages.insertWidget('ss');" + ">Slideshow</a><br />");
-    $(div).append("<a href='#' onclick="+ "pages.savePage()"+">Save Page</a>");
-
-
-    var editor = $("#editor");
-
-    // add the text editor buttons
-
-
+    $(div).append("  <a class='btn btn-success' href='#' onclick="+ "pages.savePage()"+">Save Page </a>");
+    $(div).append("</br></br>");
+    $(div).append("<h3>Add widgets</h3>");
+    $(div).append("  <a class='btn btn-primary' id='ytW' href='#' onclick=" + "pages.insertWidget('yt');" + ">Youtube </a>");
+    $(div).append("  <a class='btn btn-primary' id='ssW' href='#' onclick=" + "pages.insertWidget('ss');" + ">Slideshow </a>");
 
 
 };
 
 Pages.prototype.addEditButtons = function(div) {
-        var bold = $('<button class="btn btn-primary" data-original-title="Bold - Ctrl+B"><strong>B</strong></button>');
-        var italic = $('<button class="btn btn-primary" data-original-title="Italic - Ctrl+I"><i>I</i></button>');
-        var hone = $('<button class="btn btn-primary" data-original-title="H1">H1</button>');
-        var htwo = $('<button class="btn btn-primary" data-original-title="H2">H2</button>');
-        var hthree = $('<button class="btn btn-primary" data-original-title="H3">H3</button>');
-        var para = $('<button class="btn btn-primary" data-original-title="P">P</button>');
+        var bold = $('<button class="btn " data-original-title="Bold - Ctrl+B"><strong>B</strong></button>');
+        var italic = $('<button class="btn " data-original-title="Italic - Ctrl+I"><i>I</i></button>');
+        var hone = $('<button class="btn " data-original-title="H1">H1</button>');
+        var htwo = $('<button class="btn " data-original-title="H2">H2</button>');
+        var hthree = $('<button class="btn " data-original-title="H3">H3</button>');
+        var para = $('<button class="btn " data-original-title="P">P</button>');
 
         $(div).append('<div class="btn-toolbar"></div>');
         $(div + " .btn-toolbar").append('<div class="btn-grp"></div>');
@@ -175,7 +169,7 @@ Pages.prototype.editPage = function ()
     pages.toggleEditIcons();
 }
 
-Pages.prototype.toggleEditIcons = function () 
+Pages.prototype.toggleEditIcons = function ()
 {
 	var iconId = "editIcon";
 
