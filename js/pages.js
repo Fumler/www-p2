@@ -78,6 +78,8 @@ Pages.prototype.openPage = function (id)
 	this.pageSelected (id);
 	this.currentPage = id;
 
+    button = $('<button class="btn btn-warning">Edit mode</button>').click(pages.editPage);
+
 	$.ajax ({
             url: 'functions/fetchPages.php',
             data: {'pageId': id},
@@ -89,6 +91,7 @@ Pages.prototype.openPage = function (id)
             	$("#settings").html('<li><a href="#" onclick="'+"ajaxGet('pages/settings.php', 'content')"+'">Settings</a></li>');
 
                 if(pages.currentUser == data[0][1]) {
+                    $("#edit_menu").append(button);
                     $("#edit_menu").append("<a id='pW' href='#' onclick=" + "pages.insertWidget('p')" + ">Paragraph</a><br />");
                     $("#edit_menu").append("<a id='ytW' href='#' onclick=" + "pages.insertWidget('yt');" + ">Youtube</a><br />");
                     $("#edit_menu").append("<a id='ssW' href='#' onclick=" + "pages.insertWidget('ss');" + ">Slideshow</a><br />");
@@ -96,6 +99,26 @@ Pages.prototype.openPage = function (id)
                 }
             }
         });
+}
+
+Pages.prototype.editPage = function ()
+{
+
+
+    console.log("I am inside the function");
+
+    switch(editMode) {
+        case true:
+            console.log("Edit is now true");
+            $("#content").get(0).contentEditable = false;
+            editMode = false;
+            break;
+        case false:
+            console.log("Edit is now false");
+            $("#content").get(0).contentEditable = true;
+            editMode = true;
+            break;
+    }
 }
 
 Pages.prototype.savePage = function ()
@@ -118,7 +141,7 @@ Pages.prototype.savePage = function ()
 Pages.prototype.insertWidget = function (type)
 {
     /*if(type == "p") {
-        $("#content").append("<p>Hello world!</p>");
+        $("#content").append('<p>Click to edit</p>');
     }
     else if(type == "yt") {
 		$.ajax({
