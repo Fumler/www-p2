@@ -6,8 +6,7 @@ function Pages ()
 	this.currentPage = -1; // Currently selected page, root by default.
 	this.pageSelected = null;
 	this.currentUser = -1;
-	this.currentWidget = 1;
-	this.widgetArray = new Array();
+	this.currentWidget = 0;
 
 }
 
@@ -172,6 +171,27 @@ Pages.prototype.editPage = function ()
             editMode = true;
             break;
     }
+
+    pages.toggleEditIcons();
+}
+
+Pages.prototype.toggleEditIcons = function () 
+{
+	var iconId = "editIcon";
+
+	// Toggle edit icons
+	var i = 0;
+	while ($("#" + iconId + i).length > 0) {
+		switch (editMode) {
+			case true:
+				$("#" + iconId + i).show();
+				break;
+			case false:
+				$("#" + iconId + i).hide();
+				break;
+		}
+		i++;
+	}
 }
 
 Pages.prototype.savePage = function ()
@@ -193,33 +213,7 @@ Pages.prototype.savePage = function ()
 
 Pages.prototype.insertWidget = function (type)
 {
-    /*if(type == "p") {
-        $("#content").append('<p>Click to edit</p>');
-    }
-    else if(type == "yt") {
-		$.ajax({
-			type: "GET",
-			url: 'widgets/ytFrame.php',
-			async: true,
-			success: function (response) {
-				// console.log(response);
-			    //return response;
-			    $("#content").append(response);
-			}
-		});
-    }
-    else if(type == "ss") {
-    	$.ajax({
-    		type: "GET",
-    		url: 'widgets/ssFrame.php',
-    		asynch: true,
-    		success: function (response) {
-    			$("#content").append(response);
-    		}
-    	});
-    }*/
-
-    this.widgetArray[this.currentWidget] = new Widget(type, this.currentWidget);
+    widget = new Widget(type, this.currentWidget);
 
     this.currentWidget ++;
 }
