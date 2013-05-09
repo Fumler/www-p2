@@ -6,6 +6,8 @@ function Pages ()
 	this.currentPage = -1; // Currently selected page, root by default.
 	this.pageSelected = null;
 	this.currentUser = -1;
+	this.currentWidget = 1;
+	this.widgetArray = new Array();
 }
 
 var pages = new Pages ();
@@ -87,9 +89,9 @@ Pages.prototype.openPage = function (id)
             	$("#settings").html('<li><a href="#" onclick="'+"ajaxGet('pages/settings.php', 'content')"+'">Settings</a></li>'); 
 
                 if(pages.currentUser == data[0][1]) {
-                    $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('p')" + ">Paragraph</a><br />");
-                    $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('yt')" + ">Youtube</a><br />");
-                    $("#edit_menu").append("<a href='#' onclick=" + "pages.insertWidget('ss')" + ">Slideshow</a><br />");
+                    $("#edit_menu").append("<a id='pW' href='#' onclick=" + "pages.insertWidget('p')" + ">Paragraph</a><br />");
+                    $("#edit_menu").append("<a id='ytW' href='#' onclick=" + "pages.insertWidget('yt');" + ">Youtube</a><br />");
+                    $("#edit_menu").append("<a id='ssW' href='#' onclick=" + "pages.insertWidget('ss');" + ">Slideshow</a><br />");
                     $("#edit_menu").append("<a href='derp'>derp</a>");
                 }
             }
@@ -98,7 +100,7 @@ Pages.prototype.openPage = function (id)
 
 Pages.prototype.insertWidget = function (type)
 {
-    if(type == "p") {
+    /*if(type == "p") {
         $("#content").append("<p>Hello world!</p>");
     }
     else if(type == "yt") {
@@ -122,7 +124,11 @@ Pages.prototype.insertWidget = function (type)
     			$("#content").append(response);
     		}
     	});
-    }
+    }*/
+
+    this.widgetArray[this.currentWidget] = new Widget(type, this.currentWidget);
+
+    this.currentWidget ++;
 }
 
 

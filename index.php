@@ -18,6 +18,7 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
+<script src="js/widget.js"></script>
 <script src="js/pages.js"></script>
 <head>
     <meta charset="utf-8">
