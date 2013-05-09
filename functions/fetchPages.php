@@ -47,5 +47,14 @@ if( isset($_SESSION[ 'uid' ]))
 	die( json_encode ($sth -> fetchAll() ));
 }
 
+// Returns public pages
+if( isset($_POST['public'])) {
+	$sql = 'SELECT id FROM pages WHERE privacy=?';
+	$sth = $db->prepare($sql);
+	$sth->execute(array($_POST['public']));
+
+	die(json_encode($sth->fecthAll()));
+}
+
 die("no query");
 ?>
