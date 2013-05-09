@@ -62,7 +62,7 @@
 	</div>
 	<div class="modal-footer">
 		<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-		<button class="btn btn-danger" data-dismiss="modal" onclick="deleteDiv();">Delete</button>
+		<button class="btn btn-danger" data-dismiss="modal" onclick="deleteSSFrame();">Delete</button>
 	</div>
 </div>
 
@@ -89,7 +89,7 @@
 	}
 
 	// Deletes the div and it's contents
-	function deleteDiv() {
+	function deleteSSFrame() {
 		var div = document.getElementById('ssFrameDiv');
 		div.parentNode.removeChild(div);
 
