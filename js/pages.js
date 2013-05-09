@@ -110,7 +110,11 @@ Pages.prototype.addToolbar = function(div) {
     $(div).append("</br></br>");
     $(div).append("<h3>Add widgets</h3>");
     $(div).append("  <a class='btn btn-primary' id='ytW' href='#' onclick=" + "pages.insertWidget('yt');" + ">Youtube </a>");
-    $(div).append("  <a class='btn btn-primary' id='ssW' href='#' onclick=" + "pages.insertWidget('ss');" + ">Slideshow </a>");
+    $(div).append("  <a class='btn btn-primary' id='ssW' href='#' onclick=" + "pages.insertWidget('ss');" + ">Slideshow </a>  ");
+
+    var clean = $('  <button class="btn btn-primary" href="#">Clear</button>');
+    clean.click(function() { $("#content").empty();});
+    $(div).append(clean);
 
 
 };
