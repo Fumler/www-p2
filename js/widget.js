@@ -9,11 +9,6 @@ function Widget(type, id) {
 	this.editModalHeader=	document.createElement('div');
 	this.editModalBody	=	document.createElement('div');
 	this.editModalFooter=	document.createElement('div');
-	
-	this.deleteModal 	=	document.createElement('div');
-	this.deleteModalHead=	document.createElement('div');
-	this.deleteModalBody=	document.createElement('div');
-	this.deleteModalFoot=	document.createElement('div');
 
 	// ANCHORS
 	this.editIconA		= 	document.createElement('a');
