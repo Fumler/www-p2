@@ -15,6 +15,9 @@ $(document).ready(function()
             success: function(data)
             {
                 if (data === 'login') {
+                    $("#pageList").show();
+                    $("#newPage").show();
+
                     $('#myModal1').modal('hide');
                     ajaxGet('functions/loggedIn.php', 'login');
                 }
@@ -90,6 +93,9 @@ $(document).ready(function()
                         success: function(data)
                         {
                             if (data === 'login') {
+                                $("#pageList").show();
+                                $("#newPage").show();
+                                
                                 $('#myModal2').modal('hide');
                                 ajaxGet('functions/loggedIn.php', 'login');
                             }

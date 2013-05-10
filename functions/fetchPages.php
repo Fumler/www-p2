@@ -7,6 +7,15 @@ header ('Content-type: application/json'); // Return json encoded data
 session_start();
 require_once 'connect.php';
 
+// Returns public pages and users attached to those pages
+if(isset($_POST['privacy'])) {
+	$sql = 'SELECT name, id FROM pages WHERE privacy=?';
+	$sth = $db -> prepare ($sql);
+	$sth -> execute (array ($_POST[ 'privacy' ]));
+
+	die( json_encode ($sth -> fetchAll() ));
+}
+
 // Fetches and returns all users who has registered pages
 if( isset($_POST[ 'find_users' ]))
 {
@@ -45,15 +54,6 @@ if( isset($_SESSION[ 'uid' ]))
 	$sth -> execute (array ($_SESSION[ 'uid' ], $_POST[ 'id' ]));
 
 	die( json_encode ($sth -> fetchAll() ));
-}
-
-// Returns public pages
-if( isset($_POST['public'])) {
-	$sql = 'SELECT id FROM pages WHERE privacy=?';
-	$sth = $db->prepare($sql);
-	$sth->execute(array($_POST['public']));
-
-	die(json_encode($sth->fecthAll()));
 }
 
 die("no query");
