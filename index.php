@@ -66,7 +66,6 @@
     <script src="js/dropdown.js"></script>
     <script src="js/jquery.placeholder.js"></script>
     <script src="js/ajaxGet.js"></script>
-    <script src="js/jquery.address-1.5.js"></script>
     <script>
         $(document).ready (function () {
             //var div = document.getElementById('content');
@@ -90,8 +89,8 @@
                     //return response;
                     if(response == "logged out")
                     {
-                        $("#pageList").hide();
-                        $("#newPage").hide();
+                        $("a[href='#pages']").hide();
+                        $("a[href='#create']").hide();
 
                         ajaxGet('functions/login.php', 'login');
                         ajaxGet("pages/home.php", "content");
@@ -107,12 +106,12 @@
         // hides/shows links
         var hideLinks = <?php echo hideLinks();?>;
         if (hideLinks) {
-            $("#pageList").hide();
-            $("#newPage").hide();
+            $("a[href='#pages']").hide();
+            $("a[href='#create']").hide();
         }
         else {
-            $("#pageList").show();
-            $("#newPage").show();
+            $("a[href='#pages']").show();
+            $("a[href='#create']").show();
         }
 
         // deep links

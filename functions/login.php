@@ -15,8 +15,8 @@ $(document).ready(function()
             success: function(data)
             {
                 if (data === 'login') {
-                    $("#pageList").show();
-                    $("#newPage").show();
+                    $("a[href='#pages']").show();
+                    $("a[href='#create']").show();
 
                     $('#myModal1').modal('hide');
                     ajaxGet('functions/loggedIn.php', 'login');
@@ -93,8 +93,8 @@ $(document).ready(function()
                         success: function(data)
                         {
                             if (data === 'login') {
-                                $("#pageList").show();
-                                $("#newPage").show();
+                                $("a[href='#pages']").show();
+                                $("a[href='#create']").show();
                                 
                                 $('#myModal2').modal('hide');
                                 ajaxGet('functions/loggedIn.php', 'login');
