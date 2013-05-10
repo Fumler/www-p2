@@ -64,10 +64,12 @@
         $(document).ready (function () {
             //var div = document.getElementById('content');
             ajaxGet("pages/home.php", "content");
+
         });
 
     </script>
     <script type="text/javascript">
+
         function fixModal(classId) {
             $("."+classId +" .modal").appendTo($("body"));
         }

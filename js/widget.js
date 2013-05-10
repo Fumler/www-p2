@@ -4,7 +4,7 @@ function Widget(type, id) {
 	// DIVS
 	this.mainFrameDiv	= 	document.createElement('div');
 	this.frameDiv 		=	document.createElement('div');
-	
+
 	this.editModal 		=	document.createElement('div');
 	this.editModalHeader=	document.createElement('div');
 	this.editModalBody	=	document.createElement('div');
@@ -209,7 +209,7 @@ Widget.prototype.createEditModal = function(type, id) {
 		this.editModalRadioOne.name = this.editModalRadioName;
 		this.editModalRadioOne.checked = 'checked';
 		this.editModalRadioOne.value = '1';
-		
+
 		// Append
 		this.editModalRadioGroup.appendChild(this.editModalRadioOne);
 		this.editModalRadioGroup.innerHTML += "Set";

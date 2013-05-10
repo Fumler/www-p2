@@ -141,6 +141,7 @@ Pages.prototype.savePrivacy = function() {
 
 Pages.prototype.addToolbar = function(div) {
     // add the edit page toggle
+
     $(div).append("</br>");
     $(div).append(button);
     $(div).append("  <a class='btn btn-success' href='#' onclick="+ "pages.savePage()"+">Save Page </a>");
@@ -150,9 +151,15 @@ Pages.prototype.addToolbar = function(div) {
     $(div).append("  <a class='btn btn-primary' id='ytW' href='#' onclick=" + "pages.insertWidget('yt');" + ">Youtube </a>");
     $(div).append("  <a class='btn btn-primary' id='ssW' href='#' onclick=" + "pages.insertWidget('ss');" + ">Slideshow </a>  ");
 
+
     var clean = $('  <button class="btn btn-primary" href="#">Clear</button>');
     clean.click(function() { $("#content").empty();});
     $(div).append(clean);
+
+    $("a[href='#']").click(function(e) {
+        e.preventDefault();
+        return false;
+        });
 };
 
 Pages.prototype.addSettingsModal = function(div) {
