@@ -108,26 +108,51 @@ session_start();
 
         // deep links
 
-        function loadURL(url) {
-            console.log("loadURL: " + url);
-            $("#content").load(url);
-        }
-        $.address.init(function(event) {
-            console.log("init: " + $('[rel="address:' + event.value + '"]').attr('href'));
-            $.address.strict(false);
-        }).change(function(event) {
-            $("#content").load($('[rel="address:' + event.value + '"]').attr('href'));
-            $("li").removeClass("active");
-            $('a[href="'+$('[rel="address:' + event.value + '"]').attr('href')+'"]').parent().addClass('active');
-            $.address.title(event.value.toUpperCase() + " - Fronter 2.0");
-            console.log("change");
-        });
-        $.address.title("Fronter 2.0");
+        // function loadURL(url) {
+        //     console.log("loadURL: " + url);
+        //     $("#content").load(url);
+        // }
+        // $.address.init(function(event) {
+        //     console.log("init: " + $('[rel="address:' + event.value + '"]').attr('href'));
+        //     $.address.strict(false);
+        // }).change(function(event) {
+        //     $("#content").load($('[rel="address:' + event.value + '"]').attr('href'));
+        //     $("li").removeClass("active");
+        //     $('a[href="'+$('[rel="address:' + event.value + '"]').attr('href')+'"]').parent().addClass('active');
+        //     $.address.title(event.value.toUpperCase() + " - Fronter 2.0");
+        //     console.log("change");
+        // });
+        // $.address.title("Fronter 2.0");
 
-        $('a').click(function(){
-            loadURL($(this).attr('href'));
-        });
+        // $('a').click(function(){
+        //     loadURL($(this).attr('href'));
+        // });
+        $("a[rel]").click(function(e) {
+            contentUrl = $(this).attr('rel');
+            pageUrl = $(this).attr('href');
+            console.log("Rel: " + contentUrl);
 
+            $.ajax({
+               url: contentUrl, success: function(data) {
+                $('#content').load(contentUrl);
+               }
+            });
+
+            if (contentUrl != window.location) {
+                window.history.pushState({path: contentUrl + "?rel"}, '', pageUrl);
+            }
+
+
+
+            return false;
+        });
+        $(window).bind('popstate', function() {
+                $.ajax({
+                    url: location.pathname + "?rel", success: function(data) {
+                        $('#content').load(contentUrl);
+                    }
+                });
+            });
 
 
 
@@ -144,11 +169,11 @@ session_start();
                 <a class="brand" href="#">Fronter 2.0</a>
                 <div class="nav-collapse collapse">
                     <ul class="nav">
-                        <li><a href="pages/home.php" rel="address:home">Home</a></li>
-                        <li><a href="pages/about.php" rel="address:about">About</a></li>
-                        <li><a href="pages/contact.php" rel="address:contact">Contact</a></li>
-                        <li><a href="pages/pageListing.php" rel="address:pagelist">My Pages</a></li>
-                        <li><a href="pages/pageCreator.php" rel="address:newpage">Create new page</a></li>
+                        <li><a href="#home" rel="pages/home.php">Home</a></li>
+                        <li><a href="#about" rel="pages/about.php">About</a></li>
+                        <li><a href="#contact" rel="pages/contact.php">Contact</a></li>
+                        <li><a href="#pages" rel="pages/pageListing.php">My Pages</a></li>
+                        <li><a href="#create" rel="pages/pageCreator.php">Create new page</a></li>
                     </ul>
 
                     <ul class="nav pull-right">

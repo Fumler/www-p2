@@ -8,6 +8,6 @@
 	$profilePage = $profilePage . $uid;
 	//echo(session_id());
 
-	echo '<li><a href="pages/profile.php?uid='.$uid.'" rel="address:profile">Profile</a></li>';
+	echo '<li><a href="#profile" rel="pages/profile.php?uid='.$uid.'">Profile</a></li>';
 ?>
 <li><a href="#" onclick="logout()">Log out</a></li>
