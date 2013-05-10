@@ -56,15 +56,9 @@
     ================================================== -->
     <script src="js/jquery-1.8.2.min.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script src="js/application.js"></script>
-    <script src="js/jquery-ui-1.10.0.custom.min.js"></script>
     <script src="js/jquery.dropkick-1.0.0.js"></script>
-    <script src="js/custom_checkbox_and_radio.js"></script>
-    <script src="js/custom_radio.js"></script>
     <script src="js/jquery.tagsinput.js"></script>
     <script src="js/bootstrap-tooltip.js"></script>
-    <script src="js/dropdown.js"></script>
-    <script src="js/jquery.placeholder.js"></script>
     <script src="js/ajaxGet.js"></script>
     <script>
         $(document).ready (function () {
