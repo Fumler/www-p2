@@ -1,19 +1,16 @@
 <?php
-session_start();
+    session_start();
 
     require_once('functions/connect.php');
 
-    // // Register new user
-    // if (isset($_POST['regUser']) && isset($_POST['regPwd']) && isset($_POST['regConfirmPwd'])) {
-    //     if ($_POST['regPwd'] == $_POST['regConfirmPwd']) {
-    //         $user->newUser($_POST['regUser'], $_POST['regPwd']);
-    //     }
-    //     else {
-    //         $user->error = "<strong>Error:</strong> The passwords don't match";
-    //     }
-    // }
+    function hideLinks() {
+        if (!empty($_SESSION['uid']))
+            $hideLinks = 0;
+        else
+            $hideLinks = 1;
 
-    // $_SESSION[ 'uid' ] = 1;
+        return $hideLinks;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -93,6 +90,9 @@ session_start();
                     //return response;
                     if(response == "logged out")
                     {
+                        $("#pageList").hide();
+                        $("#newPage").hide();
+
                         ajaxGet('functions/login.php', 'login');
                         ajaxGet("pages/home.php", "content");
                     }
@@ -104,7 +104,16 @@ session_start();
     var editMode = false;
     $(document).ready(function()
     {
-
+        // hides/shows links
+        var hideLinks = <?php echo hideLinks();?>;
+        if (hideLinks) {
+            $("#pageList").hide();
+            $("#newPage").hide();
+        }
+        else {
+            $("#pageList").show();
+            $("#newPage").show();
+        }
 
         // deep links
 
@@ -147,8 +156,8 @@ session_start();
                         <li><a href="pages/home.php" rel="address:home">Home</a></li>
                         <li><a href="pages/about.php" rel="address:about">About</a></li>
                         <li><a href="pages/contact.php" rel="address:contact">Contact</a></li>
-                        <li><a href="pages/pageListing.php" rel="address:pagelist">My Pages</a></li>
-                        <li><a href="pages/pageCreator.php" rel="address:newpage">Create new page</a></li>
+                        <li><a id="pageList" href="pages/pageListing.php" rel="address:pagelist">My Pages</a></li>
+                        <li><a id="newPage" href="pages/pageCreator.php" rel="address:newpage">Create new page</a></li>
                     </ul>
 
                     <ul class="nav pull-right">

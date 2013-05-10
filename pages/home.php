@@ -70,9 +70,6 @@
                         else
                             row ++;
                     }
-                        
-
-                    console.log(i);
                 }
             }
         });
