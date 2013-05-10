@@ -114,27 +114,6 @@
             $("a[href='#create']").show();
         }
 
-        // deep links
-
-        // function loadURL(url) {
-        //     console.log("loadURL: " + url);
-        //     $("#content").load(url);
-        // }
-        // $.address.init(function(event) {
-        //     console.log("init: " + $('[rel="address:' + event.value + '"]').attr('href'));
-        //     $.address.strict(false);
-        // }).change(function(event) {
-        //     $("#content").load($('[rel="address:' + event.value + '"]').attr('href'));
-        //     $("li").removeClass("active");
-        //     $('a[href="'+$('[rel="address:' + event.value + '"]').attr('href')+'"]').parent().addClass('active');
-        //     $.address.title(event.value.toUpperCase() + " - Fronter 2.0");
-        //     console.log("change");
-        // });
-        // $.address.title("Fronter 2.0");
-
-        // $('a').click(function(){
-        //     loadURL($(this).attr('href'));
-        // });
         $("a[rel]").click(function(e) {
             contentUrl = $(this).attr('rel');
             pageUrl = $(this).attr('href');
